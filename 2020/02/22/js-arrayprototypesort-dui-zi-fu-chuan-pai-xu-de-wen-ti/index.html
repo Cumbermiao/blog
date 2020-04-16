@@ -5,18 +5,22 @@
   
 
   
-  <title>test1 | Hexo</title>
+  <title>JS Array.prototype.sort 对字符串排序的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="test">
-<meta property="og:type" content="website">
-<meta property="og:title" content="test1">
-<meta property="og:url" content="http://cumbermiao.github.io/blog/test1/index.html">
+  <meta name="description" content="起因今天刷 leetcode 中遇到一个场景需要对字符数组进行排序， 书写是按照之前常用的写法 arr.sort((a,b)&#x3D;&gt;a-b) , 但是其排序结果跟未排序之前一样。 描述sort 语法：arr.sort([compareFunction])。compareFunction 参数可选，其作用是按照指定的某种顺序进行排列。如果省略， 元素按照&#x3D;&#x3D;转换为的字符串的各个字符的 Unicod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Array.prototype.sort 对字符串排序的问题">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2020/02/22/js-arrayprototypesort-dui-zi-fu-chuan-pai-xu-de-wen-ti/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="test">
+<meta property="og:description" content="起因今天刷 leetcode 中遇到一个场景需要对字符数组进行排序， 书写是按照之前常用的写法 arr.sort((a,b)&#x3D;&gt;a-b) , 但是其排序结果跟未排序之前一样。 描述sort 语法：arr.sort([compareFunction])。compareFunction 参数可选，其作用是按照指定的某种顺序进行排列。如果省略， 元素按照&#x3D;&#x3D;转换为的字符串的各个字符的 Unicod">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-16T21:41:00.000Z">
-<meta property="article:modified_time" content="2020-04-16T14:12:22.525Z">
+<meta property="article:published_time" content="2020-02-22T11:44:27.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Array">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="sort">
+<meta property="article:tag" content="string">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
@@ -66,10 +70,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-js-arrayprototypesort-dui-zi-fu-chuan-pai-xu-de-wen-ti" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/test1/index.html" class="article-date">
-  <time datetime="2020-04-16T21:41:00.000Z" itemprop="datePublished">2020-04-16</time>
+    <a href="/blog/2020/02/22/js-arrayprototypesort-dui-zi-fu-chuan-pai-xu-de-wen-ti/" class="article-date">
+  <time datetime="2020-02-22T11:44:27.000Z" itemprop="datePublished">2020-02-22</time>
 </a>
     
   </div>
@@ -80,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      test1
+      JS Array.prototype.sort 对字符串排序的问题
     </h1>
   
 
@@ -88,18 +92,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>test</p>
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天刷 leetcode 中遇到一个场景需要对字符数组进行排序， 书写是按照之前常用的写法 <code>arr.sort((a,b)=&gt;a-b)</code> , 但是其排序结果跟未排序之前一样。</p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><strong>sort 语法</strong>：<code>arr.sort([compareFunction])</code>。<br><code>compareFunction</code> 参数可选，其作用是按照指定的某种顺序进行排列。如果省略， 元素按照==转换为的字符串的各个字符的 Unicode 位点进行排序==。<br>其中 <code>compareFunction</code>还接受两个参数<code>firstEle</code>表示第一个用于比较的元素， <code>secondEle</code>表示第二个比较的元素。<br><strong>sort 返回值</strong> : 原地排序后的数组。  </p>
+<h2 id="实际结果"><a href="#实际结果" class="headerlink" title="实际结果"></a>实际结果</h2><blockquote>
+<p>从上述描述中可知，<code>sort</code>如果不指定 <code>compareFunction</code> 比较函数， 本就会将元素转成字符串并比较 Unicode 编码大小。<br>按照上面的结论，解决起因中的问题直接去掉 <code>compareFunction</code> 即可, 实际结果也是对的。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'f'</span>,<span class="string">'c'</span>].sort();</span><br><span class="line"><span class="comment">//['a','b','c','f']</span></span><br></pre></td></tr></table></figure>
+<p>再分析下我其中代码的逻辑, 在 <code>(a,b)=&gt;a-b</code> 中我期望按照升序的方式排序， 由于 a,b 是字符，所以我期望 <code>a-b</code> 计算两者的 Unicode 编码，但实际上结果是 <code>NaN</code>。<br>这实际上是与比较操作符的规则弄混了， 对于比较操作符如果两个操作符是字符串时，比较的是其 Unicode 编码， 对于 <code>-</code> 操作符如果有一个操作符是字符串， 会先调用 <code>Number()</code> 方法将其转成数字类型进行比较， 而对于非数字的字符串<code>Number()</code>转换后的结果都是 <code>NaN</code>。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p><code>sort</code> 方法如果不提供 <code>compareFunction</code> 参数，默认会将元素转成字符串，比较其 Unicode 编码大小。<br><code>arr.sort((a,b)=&gt;a-b)</code> 在比较字符串时， 根据 <code>-</code>操作符的规则， 会先调用 <code>Number()</code>, 对于无法转换成数字的字符结果为 <code>NaN</code>, 最终排序后数组不会改变。想要获得预期结果，可以利<strong>比较操作符</strong>的规则。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a&gt;b)<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>-</code> 操作符的转换规则：</p>
+<ul>
+<li>如果有一个操作数是 NaN，则结果是 NaN； </li>
+<li>如果是 Infinity 减 Infinity，或者 -Infinity 减-Infinity ，则结果是 NaN； </li>
+<li>如果是 Infinity 减-Infinity，则结果是 Infinity； </li>
+<li>如果是-Infinity 减 Infinity，则结果是-Infinity； </li>
+<li>如果有一个操作数是字符串、布尔值、 null 或 undefined，则先在后台调用 Number()函数将其转换为数值，然后再根据前面的规则执行减法计算。如果转换的结果是 NaN，则减法的结果就是 NaN； </li>
+<li>如果有一个操作数是对象，则调用对象的 valueOf()方法以取得表示该对象的数值。如果得到的值是 NaN，则减法的结果就是 NaN。如果对象没有 valueOf()方法，则调用其 toString()方法并将得到的字符串转换为数值。 </li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cumbermiao.github.io/blog/test1/index.html" data-id="ck92ufa0m0001zcou238ca4li" class="article-share-link">Share</a>
+      <a data-url="http://cumbermiao.github.io/blog/2020/02/22/js-arrayprototypesort-dui-zi-fu-chuan-pai-xu-de-wen-ti/" data-id="ck92ufa16000azcoudoqt60n1" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/blog/2020/02/28/zai-jquery-zhong-shi-yong-vue-he-react-de-zu-jian-hua-si-xiang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在 jquery 中使用 vue 和 react 的组件化思想
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/02/16/react-fiber-zhi-ji-chu-gai-nian/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React Fiber 基础</div>
+    </a>
+  
+</nav>
+
   
 </article>
 

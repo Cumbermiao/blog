@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://cumbermiao.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-jikarma-UI-test" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/06/19/jikarma-UI-test/" class="article-date">
+  <time datetime="2019-06-19T17:29:03.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/06/19/jikarma-UI-test/">记karma进行UI测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Karma"><a href="#Karma" class="headerlink" title="Karma"></a>Karma</h2><blockquote>
+<p>Karma is not a testing framework, nor an assertion library. Karma just launches an HTTP server, and generates the test runner HTML file you probably already know from your favourite testing framework. So for testing purposes you can use pretty much anything you like. </p>
+</blockquote>
+<p>Karma 既不是测试框架也不是断言库。</p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><blockquote>
+<p>karma-chrome-launcher 需要配置代理下载无头浏览器</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i karma -D</span><br><span class="line">npm i karma-jasmine karma-chrome-launcher jasmine-core -D</span><br></pre></td></tr></table></figure>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;test&quot;: &quot;node .&#x2F;node_modules&#x2F;karma&#x2F;bin&#x2F;karma start&quot;</span><br></pre></td></tr></table></figure>
+<p>可以全局安装 <code>karma-cli</code> 就能直接使用 <code>karma</code>命令了。</p>
+<h3 id="genrate-config-file"><a href="#genrate-config-file" class="headerlink" title="genrate config file"></a>genrate config file</h3><p>使用命令 <code>karma init</code> 生成配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="UI测试（backstopjs）"><a href="#UI测试（backstopjs）" class="headerlink" title="UI测试（backstopjs）"></a>UI测试（backstopjs）</h2><h3 id="install-1"><a href="#install-1" class="headerlink" title="install"></a>install</h3><p><code>npm i backstopjs -g</code><br>会下载 puppeteer</p>
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><ul>
+<li><p><code>backstop init</code> 生成一个新的实例，包含配置文件。</p>
+</li>
+<li><p><code>backstop test</code> 测试 scenarios.url 中的页面，生成页面快照并对比 <code>paths.btmaps_reference</code> 中对应图片。</p>
+</li>
+<li><p><code>backstop approve</code> 将上一次测试生成的快照作为衡量图片，下次对比时与此快照对比。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/06/19/jikarma-UI-test/" data-id="ck92ufa150009zcoudx2u339q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/06/18/leetcode/" class="article-date">
+  <time datetime="2019-06-18T17:44:46.000Z" itemprop="datePublished">2019-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/06/18/leetcode/">leetcode</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><ul>
+<li>贪心算法</li>
+<li>回溯算法</li>
+<li>快速排序</li>
+<li>双指针</li>
+</ul>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><ul>
+<li>环形遍历: [[0,1], [1,0], [0,-1], [-1,0]]</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/06/18/leetcode/" data-id="ck92ufa18000ezcoucg2ya11n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Observer-in-js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/04/08/Observer-in-js/" class="article-date">
+  <time datetime="2019-04-08T09:02:08.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/04/08/Observer-in-js/">js中的Observer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS-中的-Observer"><a href="#JS-中的-Observer" class="headerlink" title="JS 中的 Observer"></a>JS 中的 Observer</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/04/08/Observer-in-js/" data-id="ck92ufa0f0000zcouaot6bpb0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpackyou-hua" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/03/21/webpackyou-hua/" class="article-date">
+  <time datetime="2019-03-21T17:12:23.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/03/21/webpackyou-hua/">webpack优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="webpack-优化"><a href="#webpack-优化" class="headerlink" title="webpack 优化"></a>webpack 优化</h2><h4 id="区分-dev-amp-prod-配置"><a href="#区分-dev-amp-prod-配置" class="headerlink" title="区分 dev &amp; prod 配置"></a>区分 dev &amp; prod 配置</h4><ul>
+<li>publicPath</li>
+<li>baseUrl</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new webpack.DefinePlugin(&#123;</span><br><span class="line">  mode: JSON.stringfy(MODE)</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+<h4 id="指定-loader-amp-plugin-的-exclude、include-范围"><a href="#指定-loader-amp-plugin-的-exclude、include-范围" class="headerlink" title="指定 loader &amp; plugin 的 exclude、include 范围"></a>指定 loader &amp; plugin 的 exclude、include 范围</h4><h4 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h4><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><ul>
+<li>loader 多线程 ： HappyPack</li>
+<li>plugin 多线程 ： UglifyWebpackPlugin、TerserPlugin、</li>
+</ul>
+<h4 id="第三方包关系映射"><a href="#第三方包关系映射" class="headerlink" title="第三方包关系映射"></a>第三方包关系映射</h4><p>使用 DllPlugin 生成包映射， 开发环境使用 DllReferencePlugin ，不需要重复编译第三方包</p>
+<h4 id="minimize-amp-tree-shaking"><a href="#minimize-amp-tree-shaking" class="headerlink" title="minimize &amp; tree shaking"></a>minimize &amp; tree shaking</h4><ul>
+<li>使用支持 esModule 的第三方</li>
+<li>关闭不常用的配置，指定压缩范围</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">new UglifyWebpackPlugin(&#123;</span><br><span class="line">    parallel: true,</span><br><span class="line">    cache: true,</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            warnings: false,</span><br><span class="line">            drop_console: true,</span><br><span class="line">            pure_funcs: [&#39;console.log&#39;],</span><br><span class="line">            booleans: false,</span><br><span class="line">            collapse_vars: false,</span><br><span class="line">            comparisons: false,</span><br><span class="line">            hoist_funs: false,</span><br><span class="line">            hoist_props: false,</span><br><span class="line">            hoist_vars: false,</span><br><span class="line">            if_return: false,</span><br><span class="line">            inline: false,</span><br><span class="line">            join_vars: false,</span><br><span class="line">            keep_infinity: true,</span><br><span class="line">            loops: false,</span><br><span class="line">            negate_iife: false,</span><br><span class="line">            properties: false,</span><br><span class="line">            reduce_funcs: false,</span><br><span class="line">            reduce_vars: false,</span><br><span class="line">            sequences: false,</span><br><span class="line">            side_effects: false,</span><br><span class="line">            switches: false,</span><br><span class="line">            top_retain: false,</span><br><span class="line">            toplevel: false,</span><br><span class="line">            typeofs: false,</span><br><span class="line">            unused: false,</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 除非声明了正在使用生产版本的react-devtools，</span><br><span class="line">            &#x2F;&#x2F; 否则关闭所有类型的压缩。</span><br><span class="line">            conditionals: true,</span><br><span class="line">            dead_code: true,</span><br><span class="line">            evaluate: true,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    sourceMap: true,</span><br><span class="line">    chunkFilter: (chunk)&#x3D;&gt;&#123;</span><br><span class="line">        if(chunk.name&#x3D;&#x3D;&#x3D;&#39;vendor&#39;)&#123;</span><br><span class="line">             return false</span><br><span class="line">        &#125;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+<h4 id="提取的-css-文件使用-contenthash"><a href="#提取的-css-文件使用-contenthash" class="headerlink" title="提取的 css 文件使用 contenthash"></a>提取的 css 文件使用 contenthash</h4><h3 id="runtime-环境代码提取"><a href="#runtime-环境代码提取" class="headerlink" title="runtime 环境代码提取"></a>runtime 环境代码提取</h3><h4 id="合理的拆包策略"><a href="#合理的拆包策略" class="headerlink" title="合理的拆包策略"></a>合理的拆包策略</h4><ul>
+<li>chunk-initial 基础类库</li>
+<li>chunk-common 公共方法/组件</li>
+<li>chunk-ui UI 库</li>
+<li>chunk-others 低频使用的组件</li>
+<li>main 业务代码</li>
+</ul>
+<!-- ### inline-manifest-webpack-plugin -->
+
+<h3 id="nodemon-修改配置文件自动重启"><a href="#nodemon-修改配置文件自动重启" class="headerlink" title="nodemon 修改配置文件自动重启"></a>nodemon 修改配置文件自动重启</h3><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a href=""https://juejin.im/post/5b5d6d6f6fb9a04fea58aabc"">手摸手，带你用合理的姿势使用 webpack4 </a></li>
+<li><a href=""https://slack.engineeringkeep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1"">A Field Guide for Better Build Performance </a><br><a href="中文版" title="https://github.com/xitu/gold-miner/blob/master/TODO/keep-webpack-fast-a-field-guide-for-better-build-performance.md">中文版</a></li>
+<li><a href=""https://survivejs.com/webpack/developing/webpack-dev-server/"">webpack-dev-server</a></li>
+<li><a href=""https://zhuanlan.zhihu.com/p/35407642"">Webpack 4 进阶</a></li>
+<li><a href=""https://juejin.im/post/5abbc2ca5188257ddb0fae9b"">webpack4.0 打包优化策略</a></li>
+<li><a href=""https://github.com/wallstreetcn/webpack-and-spa-guide"">webpack-and-spa-guide</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/03/21/webpackyou-hua/" data-id="ck92ufa1s0014zcou6rya6eqv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack-ru-men" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/03/04/webpack-ru-men/" class="article-date">
+  <time datetime="2019-03-04T16:15:18.000Z" itemprop="datePublished">2019-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/03/04/webpack-ru-men/">webpack入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><h3 id="webpack-基础配置"><a href="#webpack-基础配置" class="headerlink" title="webpack 基础配置"></a>webpack 基础配置</h3><h4 id="webpack4-安装"><a href="#webpack4-安装" class="headerlink" title="webpack4 安装"></a>webpack4 安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack webpack-cli webpack-dev-server -S</span><br></pre></td></tr></table></figure>
+
+<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: resolve(__dirname, &#39;.&#x2F;src&#x2F;app.js&#39;),</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &#39;bundle[hash:5].js&#39;,</span><br><span class="line">        path: resolve(__dirname, &#39;.&#x2F;dist&#39;),</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        host: &#39;localhost&#39;,</span><br><span class="line">        port: 8080,</span><br><span class="line">        hot: true,</span><br><span class="line">        compress: true</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [],</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="升级到-webpack-4"><a href="#升级到-webpack-4" class="headerlink" title="升级到 webpack 4"></a>升级到 webpack 4</h4><ul>
+<li>新版本将命令行相关的东西单独拆了出去封装成了 <code>webpack-cli</code> ， <code>webpack xxx</code> 命令需要依赖 <code>webpack-cli</code> .</li>
+<li>node 版本升级 <code>&gt;=6.11.5</code></li>
+<li><code>npm outdated</code> 升级老项目的依赖</li>
+</ul>
+<h4 id="相关变化"><a href="#相关变化" class="headerlink" title="相关变化"></a>相关变化</h4><ul>
+<li>新功能 <code>SideEffects</code>、<code>Module Type’s Introduced</code>、<code>WebAssembly Support</code></li>
+<li>改动功能</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>废弃</th>
+<th>代替</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UglifyjsWebpackPlugin</td>
+<td>optimization.minmize</td>
+<td>Tree shaking &amp; Minimize</td>
+</tr>
+<tr>
+<td>CommonsChunkPlugin</td>
+<td>optimization.splitChunks/runtimeChunk</td>
+<td>code split</td>
+</tr>
+<tr>
+<td>NoEmitOnErrorsPlugin</td>
+<td>noEmitOnErrors</td>
+<td>编译错误跳出输出</td>
+</tr>
+</tbody></table>
+<h4 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h4><blockquote>
+<p>webpack 4 引入了零配置的概念</p>
+</blockquote>
+<ul>
+<li>development 默认开启了<code>NamedChunksPlugin</code> 和<code>NamedModulesPlugin</code>方便调试，提供了更完整的错误信息，更快的重新编译的速度。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">+ mode: &#39;development&#39;</span><br><span class="line">- devtool: &#39;eval&#39;,</span><br><span class="line">- plugins: [</span><br><span class="line">-   new webpack.NamedModulesPlugin(),</span><br><span class="line">-   new webpack.NamedChunksPlugin(),</span><br><span class="line">-   new webpack.DefinePlugin(&#123; &quot;process.env.NODE_ENV&quot;: JSON.stringify(&quot;development&quot;) &#125;),</span><br><span class="line">- ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>production 默认开启 splitChunks 和 minimize ，包括 tree-shaking ,但是可能会与 babel 冲突，导致失效。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">+  mode: &#39;production&#39;,</span><br><span class="line">-  plugins: [</span><br><span class="line">-    new UglifyJsPlugin(&#x2F;* ... *&#x2F;),</span><br><span class="line">-    new webpack.DefinePlugin(&#123; &quot;process.env.NODE_ENV&quot;: JSON.stringify(&quot;production&quot;) &#125;),</span><br><span class="line">-    new webpack.optimize.ModuleConcatenationPlugin(),</span><br><span class="line">-    new webpack.NoEmitOnErrorsPlugin()</span><br><span class="line">-  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="打包相关概念"><a href="#打包相关概念" class="headerlink" title="打包相关概念"></a>打包相关概念</h4><ul>
+<li>bundle : 包，即打包输出的文件</li>
+<li>vendor : 第三方文件， 即我们开始引入的第三方的库</li>
+<li>chunk : 打包提取的独立文件，一般为多页应用公用的文件或者应用中在多个地方使用的文件</li>
+<li>hash ： 每次打包生成的 md5</li>
+<li>chunkhash :</li>
+<li>contenthash : 自身内容变化 hash 才会改变</li>
+</ul>
+<h4 id="热更新"><a href="#热更新" class="headerlink" title="热更新"></a>热更新</h4><blockquote>
+<p>当路由懒加载的页面较多试，本地热更新会比较慢。<br>webpack 4 <code>使用babel</code> 的 <code>plugins</code> <code>babel-plugin-dynamic-import-node</code>。它只做一件事就是：将所有的<code>import()</code>转化为<code>require()</code>，这样就可以用这个插件将所有异步组件都用同步的方式引入了，并结合 <code>BABEL_ENV</code> 这个<code>bebel</code>环境变量，让它只作用于开发环境下。将开发环境中所有<code>import()</code>转化为<code>require()</code>，这种方案解决了之前重复打包的问题，同时对代码的侵入性也很小，你平时写路由的时候只需要按照官方文档路由懒加载的方式就可以了，其它的都交给<code>babel</code>来处理，当你不想用这个方案的时候，也只需要将它从<code>babel</code> 的 <code>plugins</code>中移除就可以了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; script 中添加 BABEL_ENV</span><br><span class="line">&quot;dev&quot;: &quot;BABEL_ENV&#x3D;development webpack-dev-server XXXX&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;bable plugins 中使用 babel-plugin-dynamic-import-node (仅用于开发模式)</span><br><span class="line">&#123;</span><br><span class="line">    test: &#x2F;\.(js|jsx)$&#x2F;,</span><br><span class="line">    use: &#123;</span><br><span class="line">        loader: &#39;babel-loader&#39;,</span><br><span class="line">        options: &#123;</span><br><span class="line">            presets: [&#39;@babel&#x2F;env&#39;, &#39;@babel&#x2F;preset-react&#39;],</span><br><span class="line">            plugins: build?[]:[&#39;babel-plugin-dynamic-import-node&#39;],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    exclude: &#x2F;node_modules&#x2F;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="Tree-shaking"><a href="#Tree-shaking" class="headerlink" title="Tree shaking"></a>Tree shaking</h4><p>webpack 4 只是增加了 JSON Tree Shaking 和 sideEffects 能让你能更好优化代码。<br>默认 webpack 是支持 Tree-Shaking 的，但在你的项目中可能会因为 babel 的原因导致它失效。</p>
+<p>因为 Tree Shaking 这个功能是基于 ES6 modules 的静态特性检测，来找出未使用的代码，所以如果你使用了 babel 插件的时候，如：babel-preset-env，它默认会将模块打包成 commonjs，这样就会让 Tree Shaking 失效了。</p>
+<p>解决方法只要让 babel 不transform modules就可以了(设置 modules:false)</p>
+<h4 id="使用-babel"><a href="#使用-babel" class="headerlink" title="使用 babel"></a>使用 babel</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i @babel&#x2F;core @babel&#x2F;preset-env</span><br><span class="line">npm i @babel&#x2F;polyfill</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置 .babelrc 或者 babel-loader 的 options</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&#39;env&#39;,&#123;</span><br><span class="line">            &quot;modules&quot;: false,</span><br><span class="line">            &quot;targets&quot;: &#123;</span><br><span class="line">                &quot;browsers&quot;: [&#39;&gt; 1%&#39;, &#39;last 2 versions&#39;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>入口文件中添加 babel-polyfill ，保证其首先加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entry:[&#39;babel-polyfill&#39;,&#39;app.js&#39;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="postcss-loader"><a href="#postcss-loader" class="headerlink" title="postcss loader"></a>postcss loader</h3><blockquote>
+<p>postcss-loader cssnao autoprefixer cssnext(包含 autoprefixer，不能同时安装)</p>
+</blockquote>
+<h3 id="optimize-css-assets-webpack-plugin"><a href="#optimize-css-assets-webpack-plugin" class="headerlink" title="optimize-css-assets-webpack-plugin"></a>optimize-css-assets-webpack-plugin</h3><blockquote>
+<p>优化，压缩 css 代码，默认使用 cssnano ， 如果使用了 postcss-loader 可以配置 postcssrc.js 使用 cssnano，也会自动压缩。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new OptimizeCssAssetsPlugin(&#123;</span><br><span class="line">    assetNameRegExp: &#x2F;\.css$&#x2F;g,</span><br><span class="line">    cssProcessor: require(&#39;cssnano&#39;),</span><br><span class="line">    cssProcessorPluginOptions: &#123;</span><br><span class="line">        preset: [&#39;default&#39;, &#123; discardComments: &#123; removeAll: true &#125; &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    canPrint: true,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="webpack-bundle-analyzer"><a href="#webpack-bundle-analyzer" class="headerlink" title="webpack-bundle-analyzer"></a>webpack-bundle-analyzer</h4><blockquote>
+<p>分析打包的目录结构</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const BundleAnalyzerPlugin &#x3D; require(&#39;webpack-bundle-analyzer&#39;).BundleAnalyzerPlugin;</span><br><span class="line"></span><br><span class="line">plugins:[</span><br><span class="line">    new BundleAnalyzerPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="mini-css-extract-plugin-extract-text-webpack-plugin"><a href="#mini-css-extract-plugin-extract-text-webpack-plugin" class="headerlink" title="mini-css-extract-plugin ? extract-text-webpack-plugin"></a>mini-css-extract-plugin ? extract-text-webpack-plugin</h3><blockquote>
+<p>webpack 4 使用 mini-css-extract-plugin 将样式提取成单独的 css 文件，而且据说处理速度比 extract-text-webpack-plugin 快。<br>可以 filename 使用 contenthash ，这样在打包时 css 文件没有变化时不会重新打包。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new MiniCssExtractPlugin(&#123;</span><br><span class="line">    filename: &#39;[name].css&#39;,</span><br><span class="line">    chunkFilename: &#39;[id].css&#39;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="speed-measure-webpack-plugin"><a href="#speed-measure-webpack-plugin" class="headerlink" title="speed-measure-webpack-plugin"></a>speed-measure-webpack-plugin</h3><blockquote>
+<p>测 loader 和 plugin 的处理速度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const smp &#x3D; new SpeedMeasurePlugin();</span><br><span class="line">module.exports&#x3D; smp.wrap(merge(defaultConf, build ? prodConf : devConf))</span><br></pre></td></tr></table></figure>
+
+<h3 id="clean-webpack-plugin"><a href="#clean-webpack-plugin" class="headerlink" title="clean-webpack-plugin"></a>clean-webpack-plugin</h3><blockquote>
+<p>清除打包目录文件</p>
+</blockquote>
+<h3 id="uglifyjs-webpack-plugin-amp-terser-webpack-plugin"><a href="#uglifyjs-webpack-plugin-amp-terser-webpack-plugin" class="headerlink" title="uglifyjs-webpack-plugin &amp; terser-webpack-plugin"></a>uglifyjs-webpack-plugin &amp; terser-webpack-plugin</h3><blockquote>
+<p>压缩 js 文件，webpack4 打包时设置 mode 为 production 会自动压缩 ， 该插件还有其他配置，如可以去除 console，开启多线程提高打包速度等。<br>可以在 optimization 中配置压缩优化的插件， 官方文档中说默认的使用的是 terser-webpack-plugin</p>
+</blockquote>
+<p>虽然该插件有其他功能，但是在实际使用中该插件的<strong>处理较长</strong>，压缩的大小稍微小一点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">        minimize: true,</span><br><span class="line">        minimizer: [</span><br><span class="line">            new UglifyWebpackPlugin(&#123;</span><br><span class="line">                parallel: true,</span><br><span class="line">                uglifyOptions: &#123;</span><br><span class="line">                    compress: &#123;</span><br><span class="line">                        warnings: false,</span><br><span class="line">                        drop_console: true,</span><br><span class="line">                        pure_funcs: [&#39;console.log&#39;],</span><br><span class="line">                    &#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">                sourceMap: true,</span><br><span class="line">            &#125;),</span><br><span class="line">            &#x2F;&#x2F; new TerserPlugin(&#123;</span><br><span class="line">            &#x2F;&#x2F;     cache: true,</span><br><span class="line">            &#x2F;&#x2F;     parallel: true,</span><br><span class="line">            &#x2F;&#x2F;     sourceMap: true, &#x2F;&#x2F; Must be set to true if using source-maps in production</span><br><span class="line">            &#x2F;&#x2F;     terserOptions: &#123;</span><br><span class="line">            &#x2F;&#x2F;         &#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;webpack-contrib&#x2F;terser-webpack-plugin#terseroptions</span><br><span class="line">            &#x2F;&#x2F;     &#125;,</span><br><span class="line">            &#x2F;&#x2F; &#125;),</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="webpack-build-notifier"><a href="#webpack-build-notifier" class="headerlink" title="webpack-build-notifier"></a>webpack-build-notifier</h3><blockquote>
+<p>打包结束时气泡通知</p>
+</blockquote>
+<h3 id="progress-bar-webpack-plugin"><a href="#progress-bar-webpack-plugin" class="headerlink" title="progress-bar-webpack-plugin"></a>progress-bar-webpack-plugin</h3><blockquote>
+<p>显示当前的 webpack 进度，与 progress 类似，样式好看一点</p>
+</blockquote>
+<h3 id="DllPlugin-amp-DllReferencePlugin"><a href="#DllPlugin-amp-DllReferencePlugin" class="headerlink" title="DllPlugin &amp; DllReferencePlugin"></a>DllPlugin &amp; DllReferencePlugin</h3><blockquote>
+<p>DllPlugin 用于生成第三方包的 manifest.json ， 提取编译第三方的 js 而不需要每次启动 webpack 时都要重新编译 ，manifest 用于映射引入包和编译的 js 位置。 配置 DllReferencePlugin 可以在编译时通过 manifest 的映射直接找到包，加快 webpack 的编译速度。</p>
+</blockquote>
+<p>在 npm run dev 之前先要 npm run dll 生成第三方的编译文件和 manifest.json 映射， DllPlugin 的 entry 只接受数组，所以 dev 和 dll 的 entry 要分开配置。</p>
+<ul>
+<li>注意 context 需要配置，否则会包 data must be a string or a buffer 的错误</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;dll.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    plugins:[</span><br><span class="line">        new webpack.DllPlugin(&#123;</span><br><span class="line">            path: path.resolve(__dirname,&#39;..&#x2F;manifest.json&#39;)</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;dev.config.js</span><br><span class="line">plugins:[</span><br><span class="line">    new webpack.DllReferencePlugin(&#123;</span><br><span class="line">        context:__dirname,</span><br><span class="line">        path: path.resolve(__dirname,&#39;..&#x2F;manifest.json)</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; webpack.config.js</span><br><span class="line">let entry &#x3D; process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;dll&#39;?&#123;</span><br><span class="line">    vendor:[&#39;react&#39;,&#39;redux&#39;,&#39;react-redux&#39;],</span><br><span class="line">&#125;:&#123;</span><br><span class="line">    main: &#39;.&#x2F;src&#x2F;app.js&#39;</span><br><span class="line">    vendor:[&#39;react&#39;,&#39;redux&#39;,&#39;react-redux&#39;],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="generate-asset-webpack-plugin"><a href="#generate-asset-webpack-plugin" class="headerlink" title="generate-asset-webpack-plugin"></a>generate-asset-webpack-plugin</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/03/04/webpack-ru-men/" data-id="ck92ufa2n001xzcouc42s39c1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-extension" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/02/26/extension/" class="article-date">
+  <time datetime="2019-02-26T13:51:13.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/02/26/extension/">chrome extension</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Chrome-extension-开发"><a href="#Chrome-extension-开发" class="headerlink" title="Chrome extension 开发"></a>Chrome extension 开发</h2><h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<li><a href="https://developer.chrome.com/" title="" target="">chrome 官网</a></li>
+<li><a href="https://crxdoc-zh.appspot.com/extensions/" title="" target="">chrome 非官方中文翻译</a>
+
+</li>
+</ul>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><h5 id="1-content-scripts-中-css-文件会直接插入到页面，要注意否则影响到所有页面原来的样式。"><a href="#1-content-scripts-中-css-文件会直接插入到页面，要注意否则影响到所有页面原来的样式。" class="headerlink" title="1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。"></a>1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。</h5><h5 id="2-options-页面-input-框中显示-url-形式的字符串-，在最后会默认加一个-，如果是空字符串-‘’-是也会显示-所以在保存输入的-url-时要去掉最后的-。"><a href="#2-options-页面-input-框中显示-url-形式的字符串-，在最后会默认加一个-，如果是空字符串-‘’-是也会显示-所以在保存输入的-url-时要去掉最后的-。" class="headerlink" title="2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 / ，如果是空字符串 ‘’ 是也会显示 / 所以在保存输入的 url 时要去掉最后的 / 。"></a>2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 / ，如果是空字符串 ‘’ 是也会显示 / 所以在保存输入的 url 时要去掉最后的 / 。</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/02/26/extension/" data-id="ck92ufa0z0004zcouh7v7bp61" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/02/19/git/" class="article-date">
+  <time datetime="2019-02-19T00:00:00.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/02/19/git/">git 基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文参照<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%8E%B7%E5%8F%96-Git-%E4%BB%93%E5%BA%93" title="" target="">文章</a></p>
+<h3 id="git-初始准备"><a href="#git-初始准备" class="headerlink" title="git 初始准备"></a>git 初始准备</h3><h5 id="Git-自带一个-git-config-的工具来帮助设置控制-Git-外观和行为的配置变量。-这些变量存储在三个不同的位置："><a href="#Git-自带一个-git-config-的工具来帮助设置控制-Git-外观和行为的配置变量。-这些变量存储在三个不同的位置：" class="headerlink" title="Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置："></a>Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置：</h5><ul>
+<li>/etc/gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 –system 选项的 git config 时，它会从此文件读写配置变量.</li>
+<li>~/.gitconfig 或 ~/.config/git/config 文件：只针对当前用户。 可以传递 –global 选项让 Git 读写此文件。</li>
+<li>当前使用仓库的 Git 目录中的 config 文件（就是 .git/config）：针对该仓库。</li>
+</ul>
+<h5 id="初次使用-git-时，-需要设置下面几个信息。"><a href="#初次使用-git-时，-需要设置下面几个信息。" class="headerlink" title="初次使用 git 时， 需要设置下面几个信息。"></a>初次使用 git 时， 需要设置下面几个信息。</h5><ol>
+<li>设置用户信息</li>
+</ol>
+<p>第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"John Doe"</span></span><br><span class="line">git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p>如果使用了 –global 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 –global 选项的命令来配置。</p>
+<ol start="2">
+<li>检查配置信息</li>
+</ol>
+<p>使用 git config –list 查看所有配置 ， 你可能会看到重复的变量名，因为 Git 会从不同的文件中读取同一个配置（例如：/etc/gitconfig 与 ~/.gitconfig）。 这种情况下，Git 会使用它找到的每一个变量的最后一个配置。</p>
+<p>使用 git config <key> 查看指定 key 的值。</p>
+<ol start="3">
+<li>设置编辑器（可选）</li>
+</ol>
+<h3 id="获取仓库"><a href="#获取仓库" class="headerlink" title="获取仓库"></a>获取仓库</h3><blockquote>
+<p>有两种取得 Git 项目仓库的方法。 第一种是在本地创建 Git 仓库或者将现有目录下导入所有文件到 Git 中； 第二种是从一个服务器克隆一个现有的 Git 仓库。</p>
+</blockquote>
+<h4 id="本地创建仓库"><a href="#本地创建仓库" class="headerlink" title="本地创建仓库"></a>本地创建仓库</h4><p>在本地创建仓库，首先进入项目文件夹， 使用 git init 初始化，初始化会创建 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件。  </p>
+<p>如果你文件夹中已经有文件了， 需要使用 git add 命令来实现对指定文件的跟踪，然后执行 git commit 提交。</p>
+<h4 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h4><p>克隆远程仓库使用 git clone [url] 命令， 注意 git clone 默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</p>
+<p>Git 支持多种数据传输协议。 上面的例子使用的是 https:// 协议，不过你也可以使用 git:// 协议或者使用 SSH 传输协议，比如 user@server:path/to/repo.git </p>
+<h3 id="记录每次更新"><a href="#记录每次更新" class="headerlink" title="记录每次更新"></a>记录每次更新</h3><p>仓库中的文件只有两种状态 已追踪 和 未追踪。工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。</p>
+<img src="https://git-scm.com/book/en/v2/images/lifecycle.png" class="[class names]" title="[文件变化图]">
+
+<h4 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h4><p> git status 会显示当前仓库中 未被追踪的文件（空文件夹不会显示）， 已追踪的文件(add 但是未 commit,暂存状态)。</p>
+<p> 只要在 Changes to be committed 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件此时此刻的版本将被留存在历史记录中。 你可能会想起之前我们使用 git init 后就运行了 git add (files) 命令，开始跟踪当前目录下的文件。 </p>
+<p> git add 命令使用文件或目录的路径作为参数；如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。</p>
+<p> Changes not staged for commit ，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 git add 命令。</p>
+<p> git status -s/–short 输出标记：</p>
+<ul>
+<li>?? : 新添加的未跟踪文件</li>
+<li>A : 新添加到暂存区中的文件</li>
+<li>M : 修改过的文件</li>
+<li>MM : 左边的 M 表示文件已修改，右边的 M 表示未暂存</li>
+<li>AM : 类似 MM ， 左边表示新增未跟踪文件， M 表示修改但是未暂存。即 add 之后 有修改但是未再次 add。</li>
+</ul>
+<h4 id="查看已暂存和未暂存的修改"><a href="#查看已暂存和未暂存的修改" class="headerlink" title="查看已暂存和未暂存的修改"></a>查看已暂存和未暂存的修改</h4><p> git diff 查看当前未暂存的（未add）的文件内容的修改（与）<br> git diff –staged/–cached 查看已经暂存（add）的文件内容的修改</p>
+<h4 id="提交暂存内容"><a href="#提交暂存内容" class="headerlink" title="提交暂存内容"></a>提交暂存内容</h4><p> git commit 会进入编辑器书写本次提交说明。<br> git commit -m ‘’ 直接在命令行中书写说明，跳过进入编辑器操作。<br> git commit -a 自动暂存所有已跟踪的文件进行提交。</p>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p> 如果要删除 git 中某个文件，使用 git rm 暂存区的文件， 改命令还会删除 本地的文件。<br> 如果要保留本地文件，但是要删除 git 中的该文件使用 git rm –cached , 之后使用 git status 你可以看见本地文件处于未跟踪状态而仓库中该文件已经删除。</p>
+<h4 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h4><p> 使用 git mv from_file to_file 可以对文件重命名 ， 其实这条命令相当于 mv + git rm + git add 三条命令的合集。</p>
+<h4 id="查看历史提交"><a href="#查看历史提交" class="headerlink" title="查看历史提交"></a>查看历史提交</h4><p>git log 会按提交时间列出所有的更新</p>
+<figure class="highlight plain"><figcaption><span>log -p -n```  -p 显示每次提交的内容差异， -n 表示比较最近 n 次提交</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;git log --pretty&#x3D;format&#96;&#96;&#96;相关格式参照上面的文章</span><br><span class="line"></span><br><span class="line">### 撤销操作</span><br><span class="line"></span><br><span class="line">#### 撤销提交</span><br><span class="line">&#96;&#96;&#96;git commit --amend&#96;&#96;&#96; 重新对上一次提交进行提交， 如果上一次提交后没有修改则直接修改 commit 信息，如果上一次后有修改的内容需要先暂存，改命令会提交暂存内容并修改commit 信息。</span><br><span class="line"></span><br><span class="line">如果你 add * 暂存了错误的文件并且已经 commit 了， 可以使用 &#96;&#96;&#96;git rm&#96;&#96;&#96; + &#96;&#96;&#96;git commit --amend&#96;&#96;&#96; 来删除 git 中的错误文件，因为 rm 删除了暂存区的文件，amend 重新提交会提交暂存区的内容，所以就会覆盖上次 commit。</span><br><span class="line"></span><br><span class="line">#### 撤销暂存文件</span><br><span class="line">&#96;&#96;&#96;git reset HEAD filename &#96;&#96;&#96; 撤销暂存区中的文件</span><br><span class="line"></span><br><span class="line">#### 撤销文件修改</span><br><span class="line">&#96;&#96;&#96;git checkout -- filename&#96;&#96;&#96; 撤销文件改动，注意使用该命令无法恢复之前文件的改动</span><br><span class="line"></span><br><span class="line">### 远程仓库</span><br><span class="line"></span><br><span class="line">#### 添加远程仓库</span><br><span class="line">&#96;&#96;&#96;git remote add &lt;remote-name&gt; &lt;url&gt;&#96;&#96;&#96; 新增远程仓库，remote-name 缩写别名</span><br><span class="line">仓库可能会有多个，一般第一次新增的为origin。添加了远程仓库可以拉取数据。</span><br><span class="line"></span><br><span class="line">#### 拉取数据</span><br><span class="line">&#96;&#96;&#96;git fetch [remote-name]&#96;&#96;&#96; 这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</span><br><span class="line"></span><br><span class="line">#### 推送到远程仓库</span><br><span class="line">&#96;&#96;&#96;git push [remote-name] [branch-name]&#96;&#96;&#96;  只有当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。</span><br><span class="line"></span><br><span class="line">#### 查看远程仓库</span><br><span class="line">&#96;&#96;&#96;git remote show [remote-name]&#96;&#96;&#96; 查看远程仓库信息</span><br><span class="line"></span><br><span class="line">#### 远程仓库的移除与重命名</span><br><span class="line">&#96;&#96;&#96;git remote rename origin_name new_name&#96;&#96;&#96;  修改仓库的 remote_name</span><br><span class="line">&#96;&#96;&#96;git remote rm [remote-name]&#96;&#96;&#96; 删除远程仓库</span><br><span class="line"></span><br><span class="line">### 标签</span><br><span class="line"></span><br><span class="line">#### 创建标签</span><br><span class="line">Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。</span><br><span class="line">轻量标签很像一个不会改变的分支 - 它只是一个特定提交的引用。</span><br><span class="line">附注标签是存储在 Git 数据库中的一个完整对象。 它们是可以被校验的；其中包含打标签者的名字、电子邮件地址、日期时间；还有一个标签信息；并且可以使用 GNU Privacy Guard （GPG）签名与验证。 通常建议创建附注标签，这样你可以拥有以上所有信息。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;git tag tag-name&#96;&#96;&#96; 创建轻量标签</span><br><span class="line">&#96;&#96;&#96;git tag -a tag-name&#96;&#96;&#96; 创建轻量标签</span><br><span class="line">&#96;&#96;&#96;git tag tag-name commit-id&#96;&#96;&#96; 可以给之前commit的记录打tag</span><br><span class="line"></span><br><span class="line">一般情况下， git push 命令并不会传送标签到远程仓库服务器上。在创建完标签后你必须显式地推送标签到共享服务器上。 这个过程就像共享远程分支一样 - 你可以运行 &#96;&#96;&#96;git push origin [tagname]&#96;&#96;&#96;。</span><br><span class="line"></span><br><span class="line">#### 删除标签</span><br><span class="line">&#96;&#96;&#96;git tag -d tag-name&#96;&#96;&#96; 删除标签</span><br><span class="line"></span><br><span class="line">一般情况下，我们不应该直接检出标签，&#96;&#96;&#96;git checkout tag-name&#96;&#96;&#96; 检出标签之后，如果进行了一些修改并且提交，标签不会发生变化，但你的新提交将不属于任何分支，并且将无法访问，除非确切的提交哈希。</span><br><span class="line">因此，如果你需要进行更改通常需要创建一个新分支&#96;&#96;&#96;git checkout tag-name -b &#96;&#96;&#96;.</span><br><span class="line"></span><br><span class="line">### 设置命令别名</span><br><span class="line">&#96;&#96;&#96;git config --global alias.co checkout&#96;&#96;&#96; 设置 checkout 别名为 co ， &#96;&#96;&#96;git co&#96;&#96;&#96; 效果与 &#96;&#96;&#96;git checkout&#96;&#96;&#96; 一样。</span><br><span class="line">对于一些常用的命令，我们可以进行简写，对于一些命令可以进行语义化的书写，如：</span><br><span class="line">- 取消暂存文件 &#96;&#96;&#96;git config --global alias.unstage &#39;reset HEAD --&#39;</span><br></pre></td></tr></table></figure>
+
+<p>如果要执行外部命令，而不是一个 Git 子命令。 如果是那样的话，可以在命令前面加入 ! 符号。  如果你自己要写一些与 Git 仓库协作的工具的话，那会很有用。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/02/19/git/" data-id="ck92ufa2i001rzcou3qnb5249" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-about" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/01/25/about/" class="article-date">
+  <time datetime="2019-01-25T19:09:48.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/01/25/about/">关于</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="🏠-关于本站"><a href="#🏠-关于本站" class="headerlink" title="🏠 关于本站"></a>🏠 关于本站</h2><h2 id="👨‍💻-博主是谁"><a href="#👨‍💻-博主是谁" class="headerlink" title="👨‍💻 博主是谁"></a>👨‍💻 博主是谁</h2><h2 id="⛹-兴趣爱好"><a href="#⛹-兴趣爱好" class="headerlink" title="⛹ 兴趣爱好"></a>⛹ 兴趣爱好</h2><h2 id="📬-联系我呀"><a href="#📬-联系我呀" class="headerlink" title="📬 联系我呀"></a>📬 联系我呀</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/01/25/about/" data-id="ck92ufa0n0002zcou7yn09dn9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/blog/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

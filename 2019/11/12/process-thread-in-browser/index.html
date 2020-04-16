@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>浏览器的进程与线程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="inside browser 系列 Frame 解析 js 主线程, 在阅读此文章前需要阅读 event loop ,了解下相关概念。 可以部分参考 页面绘制流程 进程与线程 牢记一个进程可以由多个线程组成。进程是 cpu 资源分配的最小单位，可以拥有内存和独立运行的最小单位。 可以理解为一个工厂。  线程是 cpu 调度的最小单位， 即给工厂打工的工人。 cpu 可以调度工人给工厂工作，  且">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器的进程与线程">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2019/11/12/process-thread-in-browser/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="inside browser 系列 Frame 解析 js 主线程, 在阅读此文章前需要阅读 event loop ,了解下相关概念。 可以部分参考 页面绘制流程 进程与线程 牢记一个进程可以由多个线程组成。进程是 cpu 资源分配的最小单位，可以拥有内存和独立运行的最小单位。 可以理解为一个工厂。  线程是 cpu 调度的最小单位， 即给工厂打工的工人。 cpu 可以调度工人给工厂工作，  且">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9981C9BF2B7741CAB26BB59AE94F097F?method=download&shareKey=d59ea04f63e30e62343b0688891c0785">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4C8C97130D784A1987586082011C5353?method=download&shareKey=5e3499aeca6993c1c53826196026c818">
+<meta property="article:published_time" content="2019-11-12T16:03:47.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/9981C9BF2B7741CAB26BB59AE94F097F?method=download&shareKey=d59ea04f63e30e62343b0688891c0785">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://cumbermiao.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-process-thread-in-browser" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/11/12/process-thread-in-browser/" class="article-date">
+  <time datetime="2019-11-12T16:03:47.000Z" itemprop="datePublished">2019-11-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器的进程与线程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- UNDONE: 参考文章中有些地方矛盾， html parse 和 style calc 是否同步执行？ main thread 的详细过程？  是否存在 paint 步骤还是直接调用 compositor thread -->
+<p><a href="https://developers.google.com/web/updates/2018/09/inside-browser-part2" target="_blank" rel="noopener">inside browser 系列</a></p>
+<p><a href="https://aerotwist.com/blog/the-anatomy-of-a-frame/" target="_blank" rel="noopener">Frame 解析</a></p>
+<p><a href="https://medium.com/@francesco_rizzi/javascript-main-thread-dissected-43c85fce7e23" target="_blank" rel="noopener">js 主线程</a>, 在阅读此文章前需要阅读 <a href="https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5" target="_blank" rel="noopener">event loop</a> ,了解下相关概念。</p>
+<p><a href="https://segmentfault.com/a/1190000012925872" target="_blank" rel="noopener">可以部分参考</a></p>
+<p><a href="https://frarizzi.science/journal/web-engineering/browser-rendering-queue-in-depth" target="_blank" rel="noopener">页面绘制流程</a></p>
+<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><blockquote>
+<p>牢记一个进程可以由多个线程组成。<br>进程是 cpu 资源分配的最小单位，可以拥有内存和独立运行的最小单位。 可以理解为一个工厂。</p>
+</blockquote>
+<p>线程是 cpu 调度的最小单位， 即给工厂打工的工人。 cpu 可以调度工人给工厂工作，  且同一个工厂的工厂在同一块区域，即共享资源。</p>
+<h2 id="浏览器的多进程"><a href="#浏览器的多进程" class="headerlink" title="浏览器的多进程"></a>浏览器的多进程</h2><blockquote>
+<p>浏览器是基于多进程的， 每个 tab 页或者插件都是一个单独的进程， 除此之外还有主进程、 GPU 进程等，此处只解释主要的几个进程。</p>
+</blockquote>
+<ul>
+<li><p>browser 进程： 该进程是浏览器的主进程，处理除了 tab 页之外的功能， 如：地址栏、标签、前进后退、网络资源管理等。</p>
+</li>
+<li><p>renderer 进程: 默认每个 tab 页面一个进程， 负责该 tab 页所有展示的内容。</p>
+</li>
+<li><p>GPU 进程： 用于处理 GPU 任务。</p>
+</li>
+<li><p>plugin 进程： 处理插件相关的任务， 如 flash </p>
+</li>
+<li><p>extension 进程： 处理谷歌插件的任务。</p>
+</li>
+</ul>
+<p>chrome 浏览器对每个 tab 页都申请一个单独的 render process ， 好处在于某个 tab 的 render process 崩溃时不会影响其他的 tab 页， 甚至 chrome 现在对每个 iframe 都申请了一个 render process。<br>坏处就在于 tab 页一多， 那么浏览器就会占据较大的内存资源。</p>
+<p>browser process 拥有 UI thread 用于绘制 button 等元素， network thread 用于请求资源， storage thread 控制文件读写权限。</p>
+<h2 id="简单分析一个简单请求的过程"><a href="#简单分析一个简单请求的过程" class="headerlink" title="简单分析一个简单请求的过程"></a>简单分析一个简单请求的过程</h2><p>从浏览器地址栏输入 url ， 浏览器请求获取数据并且展示在页面上， 这个过程调用了哪些线程？</p>
+<p>首先当你输入 url 的时候， UI thread 会判断这个是一个 搜索问题还是一个 url ， 如果是搜索问题则请求搜索引擎否则请求 url。</p>
+<p>确认之后，  UI thread 会发起一个网络请求， 此时 network thread 会使用对应的协议建立请求。此时， netowrk thread 可能会收到 301 中状态码， 此时会告诉 UI thread 资源被重定向， UI thread 重新发起请求。</p>
+<p>network thread 得到响应之后会根据响应数据的类型进行不同的处理， 如果响应的数据是 html 文件， network thread 会将 html 数据传递给 renderer process 。如果是 zip 文件这种就会传递数据给下载管理器。如果不符合浏览器的安全策略，如发生了跨域此时就会报错，不需要调用 renderer process。</p>
+<p>如果 network thread 认为浏览器需要跳转至对应的页面， 它会告诉 UI thread 数据已经准备好， UI thread 会找一个 renderer process 并传递数据。<br>在 network thread 请求数据的同时， UI thread 就已经开始请求 renderer process 了， 在 network thread 告诉 UI thread 数据已经获取时， renderer process 已经待命了。</p>
+<p>由于 UI thread 是属于 browser process 的， 与 renderer process 通信需要通过 IPC ， 使用 stream 的方式传递 html 数据。 一旦 browser process 接收到 renderer process 已经 commit 的确认之后结束导航阶段， 开始文档加载阶段。<br>此时，地址栏会更新，展示出新页面的网页信息。history tab 会更新，可通过返回键返回导航来的页面，为了让关闭 tab 或者窗口后便于恢复，这些信息会存放在硬盘中。。</p>
+<p>当 renderer process 渲染页面结束之后， 它会通过 IPC 通知 browser process 结束loading，此处也是 onload 事件发生的地方。</p>
+<p>至此，整个流程结束。</p>
+<h2 id="renderer-process"><a href="#renderer-process" class="headerlink" title="renderer process"></a>renderer process</h2><blockquote>
+<p>renderer process 负责对应 tab 页的渲染， 一般会包含 a main thread, a raster thread, a compositor thread, 如果使用了 web worker 或者 service worker ， 还会有 worker threads .</p>
+</blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/9981C9BF2B7741CAB26BB59AE94F097F?method=download&shareKey=d59ea04f63e30e62343b0688891c0785" alt="threads in renderer"></p>
+<p>上图展示了一帧的步骤， 有的步骤不是每帧都会执行。</p>
+<h3 id="renderer-process-处理过程"><a href="#renderer-process-处理过程" class="headerlink" title="renderer process 处理过程"></a>renderer process 处理过程</h3><ol>
+<li><p>renderer process 在接收 html 数据时， main thread 将 html 字符串解析成 DOM。</p>
+</li>
+<li><p>如果在解析 html 元素时遇到了 img、link 标签时，preload scanner 会在 html 解析器解析到 tokens 时， 就告诉 browser process 的 network thread 请求对应资源。</p>
+</li>
+<li><p>如果 html 解析器遇到了 script 标签， main thread 会停止解析 html ， 去加载解析并执行 js 代码。 因为 js 可能会改变 DOM 结构，如果 js 改变了 DOM 结构，那么就需要在 js 之后重新构成 DOM 结构。对于不改变 DOM 结构的 js 我们可以使用 defer 或者 async 属性。</p>
+</li>
+<li><p>main thread 解析 css ， 计算每个 node 节点的样式。</p>
+</li>
+<li><p>通过遍历 DOM 和每个元素的样式计算， 会得出 DOM 树和 css 树。</p>
+</li>
+<li><p>使用 DOM 树和 css 树生成 layout 树， layout 树与 DOM 树类似，但是不包含 display:none 这种不展示的元素。</p>
+</li>
+<li><p>即使知道了不同元素的位置及样式信息，我们还需要知道不同元素的绘制先后顺序才能正确绘制出整个页面。在绘制阶段，主线程会遍历布局树以创建绘制记录。绘制记录可以看做是记录各元素绘制先后顺序的笔记。</p>
+</li>
+<li><p>在获取了所有需要的信息之后， 浏览器使用合成技术来绘制每帧。<br>合成技术会将一个页面分割成不同的层， 并对每层进行光栅化， 最终在 compositor thread 中重新组合。<br>在分层时， main thread 会遍历 layout 树创建 layer 树(即 update layer tree)。 添加了 <code>will-change</code> CSS 属性的元素，会被看做单独的一层。</p>
+</li>
+</ol>
+<p>一旦 layer 树被创建，渲染顺序被确定，主线程会把这些信息通知给 compositor thread， compositor thread 会栅格化每一层。有的层的可以达到整个页面的大小，因此，合成器线程将它们分成多个磁贴，并将每个磁贴发送到 raster threads，raster threads 会栅格化每一个磁贴并存储在 GPU 显存中。</p>
+<p>一旦磁贴被光栅化，合成器线程会收集称为绘制四边形的磁贴信息以创建合成帧。</p>
+<p>compositor thread 随后会通过 IPC 消息传递给 browser process ，由于浏览器的 UI 改变或者其它插件的渲染进程也可以添加合成帧，这些合成帧会被传递给 GPU 用以展示在屏幕上，如果滚动发生，合成器线程会创建另一个合成帧发送给 GPU。</p>
+<p>合成器的优点在于，其工作无关主线程，合成器线程不需要等待样式计算或者 JS 执行，这就是为什么合成器相关的动画 最流畅，如果某个动画涉及到布局或者绘制的调整，就会涉及到主线程的重新计算，自然会慢很多。</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/4C8C97130D784A1987586082011C5353?method=download&shareKey=5e3499aeca6993c1c53826196026c818" alt="main thread"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/11/12/process-thread-in-browser/" data-id="ck92ufa1c000kzcou6s9ecked" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/02/13/new-array-yu-map-de-wen-ti/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          new Array 与 map 的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/09/11/webpack-split-chunk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">记一次webpack拆包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

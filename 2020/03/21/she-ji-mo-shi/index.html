@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>设计模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分类创建型 工厂模式 单例模式 原型模式  结构型 装饰器模式 适配器模式 代理模式 外观模式 桥接模式 组合模式 享元模式  行为型 策略模式 模板方法模式 观察者模式 迭代器模式 职责链模式 命令模式 备忘录模式 状态模式 访问者模式 中介者模式 解释器模式  面向对象 面向对象三要素： 继承、封装、多态。  继承 子类可以继承父类的属性及方法。继承可以将公共方法抽离， 提高复用，减少冗余。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2020/03/21/she-ji-mo-shi/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="分类创建型 工厂模式 单例模式 原型模式  结构型 装饰器模式 适配器模式 代理模式 外观模式 桥接模式 组合模式 享元模式  行为型 策略模式 模板方法模式 观察者模式 迭代器模式 职责链模式 命令模式 备忘录模式 状态模式 访问者模式 中介者模式 解释器模式  面向对象 面向对象三要素： 继承、封装、多态。  继承 子类可以继承父类的属性及方法。继承可以将公共方法抽离， 提高复用，减少冗余。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-21T15:51:03.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://cumbermiao.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-she-ji-mo-shi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/21/she-ji-mo-shi/" class="article-date">
+  <time datetime="2020-03-21T15:51:03.000Z" itemprop="datePublished">2020-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ul>
+<li>工厂模式</li>
+<li>单例模式</li>
+<li>原型模式</li>
+</ul>
+<h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><ul>
+<li>装饰器模式</li>
+<li>适配器模式</li>
+<li>代理模式</li>
+<li>外观模式</li>
+<li>桥接模式</li>
+<li>组合模式</li>
+<li>享元模式</li>
+</ul>
+<h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><ul>
+<li>策略模式</li>
+<li>模板方法模式</li>
+<li>观察者模式</li>
+<li>迭代器模式</li>
+<li>职责链模式</li>
+<li>命令模式</li>
+<li>备忘录模式</li>
+<li>状态模式</li>
+<li>访问者模式</li>
+<li>中介者模式</li>
+<li>解释器模式</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><blockquote>
+<p>面向对象三要素： 继承、封装、多态。</p>
+</blockquote>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote>
+<p>子类可以继承父类的属性及方法。<br>继承可以将公共方法抽离， 提高复用，减少冗余。</p>
+</blockquote>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><blockquote>
+<p>数据的权限和保密。<br>public 类和实例都能访问、protected 子类及当前类可访问、private 只限当前类访问。<br>减少耦合，不该外露的不外露。<br>利于数据、接口的权限管理。</p>
+</blockquote>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><blockquote>
+<p>同一接口不同实现， 需要结合 java 等语言的接口、重写、重载功能。<br>在 js 中具体体现在子类对父类方法的重写。<br>保持子类的开放性和灵活性。</p>
+</blockquote>
+<h3 id="为何使用面向对象"><a href="#为何使用面向对象" class="headerlink" title="为何使用面向对象"></a>为何使用面向对象</h3><p>面向对象的实质是数据结构化。<br>对于计算机，结构化的才是最简单的。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><ul>
+<li>将 new 操作单独封装</li>
+<li>遇到 new 时， 就要考虑是否该使用工厂模式<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">jquery</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(selector)&#123;</span><br><span class="line">        <span class="keyword">this</span>.selector = selector</span><br><span class="line">    &#125;   </span><br><span class="line">    html()&#123;&#125;</span><br><span class="line">    css()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jquery(selector)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><blockquote>
+<p>一个类只有一个实例</p>
+</blockquote>
+<ul>
+<li><p>依赖于 private, 在 java 中如果在外面使用 newSingleObject() 会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleObject</span></span>&#123;</span><br><span class="line">    <span class="comment">//私有化构造函数， 外部无法使用 new 调用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleObject</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">   <span class="comment">// 私有化唯一实例</span></span><br><span class="line">    <span class="keyword">private</span> SingleObject instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SingleObject <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleObject();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>js 中没有 private 的概念，所以只能通过文档及使用来规范。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">SingleObject.getInstance = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> instance</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!instance)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleObject()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><ul>
+<li>旧接口格式和使用者不兼容</li>
+<li>中间加一个适配转换接口</li>
+</ul>
+<h3 id="装饰器功能"><a href="#装饰器功能" class="headerlink" title="装饰器功能"></a>装饰器功能</h3><ul>
+<li>为对象添加新功能</li>
+<li>不改变其原有的结构和功能<br>可以用来装饰类和函数。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  @decorator</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line">A = decorator(A)||A</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/21/she-ji-mo-shi/" data-id="ck92ufa1j000rzcoucgaf85sr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/03/24/dan-dian-deng-lu-yuan-li/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          单点登录原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/03/16/react-hooks/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React Hooks</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

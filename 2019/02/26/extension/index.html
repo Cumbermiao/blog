@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives: 2020/4 | Hexo</title>
+  <title>chrome extension | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://cumbermiao.github.io/blog/archives/2020/04/index.html">
+  <meta name="description" content="Chrome extension 开发参考资料 chrome 官网 chrome 非官方中文翻译    注意点1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 &#x2F; ，如果是空字符串 ‘’ 是也会显示 &#x2F; 所以在保存输入的 url 时要去掉最后的 &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome extension">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2019/02/26/extension/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Chrome extension 开发参考资料 chrome 官网 chrome 非官方中文翻译    注意点1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 &#x2F; ，如果是空字符串 ‘’ 是也会显示 &#x2F; 所以在保存输入的 url 时要去掉最后的 &#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-02-26T13:51:13.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,40 +66,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/2020/04/16/vscode-config/" class="archive-article-date">
-  <time datetime="2020-04-16T14:12:22.525Z" itemprop="datePublished">Apr 16</time>
+        <section id="main"><article id="post-extension" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/02/26/extension/" class="article-date">
+  <time datetime="2019-02-26T13:51:13.000Z" itemprop="datePublished">2019-02-26</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+    <h1 class="article-title" itemprop="name">
+      chrome extension
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Chrome-extension-开发"><a href="#Chrome-extension-开发" class="headerlink" title="Chrome extension 开发"></a>Chrome extension 开发</h2><h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<li><a href="https://developer.chrome.com/" title="" target="">chrome 官网</a></li>
+<li><a href="https://crxdoc-zh.appspot.com/extensions/" title="" target="">chrome 非官方中文翻译</a>
 
+</li>
+</ul>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><h5 id="1-content-scripts-中-css-文件会直接插入到页面，要注意否则影响到所有页面原来的样式。"><a href="#1-content-scripts-中-css-文件会直接插入到页面，要注意否则影响到所有页面原来的样式。" class="headerlink" title="1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。"></a>1. content_scripts 中 css 文件会直接插入到页面，要注意否则影响到所有页面原来的样式。</h5><h5 id="2-options-页面-input-框中显示-url-形式的字符串-，在最后会默认加一个-，如果是空字符串-‘’-是也会显示-所以在保存输入的-url-时要去掉最后的-。"><a href="#2-options-页面-input-框中显示-url-形式的字符串-，在最后会默认加一个-，如果是空字符串-‘’-是也会显示-所以在保存输入的-url-时要去掉最后的-。" class="headerlink" title="2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 / ，如果是空字符串 ‘’ 是也会显示 / 所以在保存输入的 url 时要去掉最后的 / 。"></a>2. options 页面 input 框中显示 url 形式的字符串 ，在最后会默认加一个 / ，如果是空字符串 ‘’ 是也会显示 / 所以在保存输入的 url 时要去掉最后的 / 。</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/02/26/extension/" data-id="ck92ufa0z0004zcouh7v7bp61" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/03/04/webpack-ru-men/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/02/19/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git 基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

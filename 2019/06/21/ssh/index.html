@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives: 2020/4 | Hexo</title>
+  <title>ssh命令 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://cumbermiao.github.io/blog/archives/2020/04/index.html">
+  <meta name="description" content="SSHSSH 是一种通用的、功能强大的、基于软件的网络安全性解决方案。术语：  SSH 泛指SSH协议或者产品名为SSH的产品 SSH-1 SSH 协议版本1 ， SSH-1 SSH 协议版本2 SSH1 实现SSH-1协议的软件 ， SSH2 实现SSH-2协议的软件 ssh 运行安全终端回话和远程命令的客户端程序 OpenSSHift openBSD项目的产品，同时实现了 SSH-1协议和SS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh命令">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2019/06/21/ssh/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SSHSSH 是一种通用的、功能强大的、基于软件的网络安全性解决方案。术语：  SSH 泛指SSH协议或者产品名为SSH的产品 SSH-1 SSH 协议版本1 ， SSH-1 SSH 协议版本2 SSH1 实现SSH-1协议的软件 ， SSH2 实现SSH-2协议的软件 ssh 运行安全终端回话和远程命令的客户端程序 OpenSSHift openBSD项目的产品，同时实现了 SSH-1协议和SS">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-06-21T10:28:45.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.525Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,40 +66,86 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/2020/04/16/vscode-config/" class="archive-article-date">
-  <time datetime="2020-04-16T14:12:22.525Z" itemprop="datePublished">Apr 16</time>
+        <section id="main"><article id="post-ssh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/06/21/ssh/" class="article-date">
+  <time datetime="2019-06-21T10:28:45.000Z" itemprop="datePublished">2019-06-21</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+    <h1 class="article-title" itemprop="name">
+      ssh命令
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>SSH 是一种通用的、功能强大的、基于软件的网络安全性解决方案。<br>术语：</p>
+<ul>
+<li>SSH 泛指SSH协议或者产品名为SSH的产品</li>
+<li>SSH-1 SSH 协议版本1 ， SSH-1 SSH 协议版本2</li>
+<li>SSH1 实现SSH-1协议的软件 ， SSH2 实现SSH-2协议的软件</li>
+<li>ssh 运行安全终端回话和远程命令的客户端程序</li>
+<li>OpenSSHift openBSD项目的产品，同时实现了 SSH-1协议和SSH-2协议。</li>
+</ul>
+<h3 id="ssh-登录远程"><a href="#ssh-登录远程" class="headerlink" title="ssh 登录远程"></a>ssh 登录远程</h3><p>使用 user 用户登录到 <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -l user www.test.com</span><br></pre></td></tr></table></figure>
+<p>也可以使用 user@host 代替 -l 选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@www.test.com</span><br></pre></td></tr></table></figure>
 
+<h3 id="scp-传输文件"><a href="#scp-传输文件" class="headerlink" title="scp 传输文件"></a>scp 传输文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp sourcefile destination</span><br></pre></td></tr></table></figure>
+<p>例如将远程中的文件拷贝到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp user@www.test.com:readme readme</span><br></pre></td></tr></table></figure>
+
+<h3 id="known-host"><a href="#known-host" class="headerlink" title="known host"></a>known host</h3><p>ssh 客户端首次碰到一个新远程主机时需要执行一些额外的工作并显示和下面类似的消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -l user www.test.com</span><br><span class="line">Host key not found from the list of known hosts.</span><br><span class="line">Are you sure you want to <span class="built_in">continue</span> connecting (yes/no)?</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成秘钥对"><a href="#生成秘钥对" class="headerlink" title="生成秘钥对"></a>生成秘钥对</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<h3 id="ssh-代理"><a href="#ssh-代理" class="headerlink" title="ssh 代理"></a>ssh 代理</h3><p>用户每次使用公钥认证运行 ssh 或者 scp 命令都需要重新输入口令， 这种反复输入口令的操作会让人很反感， 为了只需要一次认证就可以让 ssh 和 scp 记住你的身份直到用户退出， ssh 代理就提供了这个功能。</p>
+<p>代理是一个程序，他可以把私钥保存在内存中， 并使用其来为 SSH客户端提供认证服务。如果用户在登录回话时启动了一个代理，那么以后的认证都不需要再重新输入密码， 知道用户结束代理为止。这个代理程序就是 ssh-agent 。</p>
+<p>将秘钥装入到代理中，可以使用 <code>ssh-add id_rsa</code> , 查看代理中的所有秘钥 <code>ssh-add -l</code> , 从代理中卸载一个秘钥 <code>ssh-add -d id_rsa</code> , 卸载代理中的所有秘钥 <code>ssh-add -D</code> .</p>
+<h3 id="代理转发"><a href="#代理转发" class="headerlink" title="代理转发"></a>代理转发</h3><p>当我们从本地执行命令 <code>scp user@www.test1.com:readme user@www.test2.com:readme</code> 复制文件时会失败。<br>当用户在本地机器运行 scp 命令时， 他连接到 <a href="http://www.test1.com" target="_blank" rel="noopener">www.test1.com</a> 并间接调用了另一个 scp 命令执行拷贝工作 ， 第二个 scp 命令也会要求秘钥出入口令， 由于远程主机上没有终端回话提示， 导致执行失败。 S<br>SH代理可以解决以上问题， 第二个 scp 命令只需要查询用户本地的 SSH 代理， 这样就不需要输入口令了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/06/21/ssh/" data-id="ck92ufa1m000vzcou329ncbga" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/09/11/webpack-split-chunk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          记一次webpack拆包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/06/19/jikarma-UI-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">记karma进行UI测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

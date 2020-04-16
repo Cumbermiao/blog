@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-vscode-config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2020/04/16/hello-world/" class="article-date">
-  <time datetime="2020-04-16T14:08:08.048Z" itemprop="datePublished">2020-04-16</time>
+    <a href="/blog/2020/04/16/vscode-config/" class="article-date">
+  <time datetime="2020-04-16T14:12:22.525Z" itemprop="datePublished">2020-04-16</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2020/04/16/hello-world/">Hello World</a>
+      <a class="article-title" href="/blog/2020/04/16/vscode-config/">vscode-config</a>
     </h1>
   
 
@@ -86,24 +86,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
+<li>eslint</li>
+<li>prettier</li>
+</ul>
+<h3 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h3><p>安装了 eslint 插件之后， 在 settings.json 进行相关配置。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"eslint.options": &#123; "configFile": "C:/Users/miaoxiongtao/eslintrc.js" &#125;,</span><br></pre></td></tr></table></figure>
+<p>可以通过 configFile 选项配置全局通用的 eslintrc 文件。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cumbermiao.github.io/blog/2020/04/16/hello-world/" data-id="ck92u9trr00012jm73isogg76" class="article-share-link">Share</a>
+      <a data-url="http://cumbermiao.github.io/blog/2020/04/16/vscode-config/" data-id="ck92ufa1n000xzcouhu9mgccl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,7 +107,767 @@
 
 
   
+    <article id="post-qian-duan-jian-kong" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/30/qian-duan-jian-kong/" class="article-date">
+  <time datetime="2020-03-30T09:25:18.000Z" itemprop="datePublished">2020-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+    </h1>
+  
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://www.alloyteam.com/2020/01/14184/" target="_blank" rel="noopener">如何进行前端监控</a><h2 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h2></li>
+<li>FCP ： 监听文档中第一个元素被渲染的时间。<h2 id="js-错误监控"><a href="#js-错误监控" class="headerlink" title="js 错误监控"></a>js 错误监控</h2></li>
+<li>当JavaScript运行时错误（包括语法错误）发生时，window会触发一个ErrorEvent接口的error事件，并执行window.onerror()。</li>
+<li>当一项资源（如<code>&lt;img&gt;</code>或<code>&lt;script&gt;</code>）加载失败，加载资源的元素会触发一个Event接口的error事件，并执行该元素上的onerror()处理函数。这些error事件不会向上冒泡到window，不过（至少在Firefox中）能被单一的<code>window.addEventListener</code>捕获。<h2 id="http-请求监控"><a href="#http-请求监控" class="headerlink" title="http 请求监控"></a>http 请求监控</h2></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/30/qian-duan-jian-kong/" data-id="ck92ufa1e000nzcou9vvlghfi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qian-duan-gong-cheng-hua" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/" class="article-date">
+  <time datetime="2020-03-27T17:03:45.000Z" itemprop="datePublished">2020-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端工程化的理解"><a href="#前端工程化的理解" class="headerlink" title="前端工程化的理解"></a>前端工程化的理解</h2><p>工程化是使用软件工程的技术和方法对项目的开发、上线和维护进行管理。<br>前端工程化在不同的阶段是可以有不同理解的。</p>
+<ul>
+<li>工具化： 工程化的最初期阶段， 用一些工具来提高自己的开发效率。</li>
+<li>规范化： 多人协作的时候，大家需要约定一些规范。</li>
+<li>流程化： 协同规模较大时，规范的落地就变得没那么容易了，通过一个流程的方式来保障规范的执行就显得尤为重要。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/27/qian-duan-gong-cheng-hua/" data-id="ck92ufa1d000lzcou3zqs9uj6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xing-neng-you-hua" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/26/xing-neng-you-hua/" class="article-date">
+  <time datetime="2020-03-26T16:40:51.000Z" itemprop="datePublished">2020-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://segmentfault.com/a/1190000008550336" target="_blank" rel="noopener">网站性能优化—CRP</a><br><a href="https://juejin.im/post/5a966bd16fb9a0635172a50a" target="_blank" rel="noopener">2018 前端性能优化清单</a><br><a href="https://github.com/xitu/gold-miner" target="_blank" rel="noopener">掘进翻译系列前端性能优化</a></p>
+<h2 id="评估性能指标"><a href="#评估性能指标" class="headerlink" title="评估性能指标"></a>评估性能指标</h2><blockquote>
+<p>性能优化是一个很大的话题， 其影响因素也很多， 设备、浏览器、协议、网络、延迟都会造成性能明显的变化。所以考虑的因素也很多， 这就需要我们设计一个完善的性能指标， 需要考虑到 CDN，缓存，代理，负载均衡，服务器等。</p>
+</blockquote>
+<ol>
+<li><p>根据用户建立性能评估指标， 根据竞争对手的性能，自己用户的代表设备的性能， 制定初步的指标。</p>
+</li>
+<li><p>根据业务员场景制定合适的指标， 通常来说指标可以分为以下几类：</p>
+<ul>
+<li>基于数量的指标： 衡量请求数量、权重和性能评分。对于长期监控和告警非常有用，对理解用户体验没什么帮助。</li>
+<li>里程碑式指标： 使用加载过程中的各个状态来标记， 如 首位字节时间(Time To First Byte) , 首次可交互时间(Time To Interactive)。 这对于用户体验很有用。</li>
+<li>渲染指标： 估计内容渲染的时间。 例如渲染开始时间(Start Render)和速度指数(Speed Index) 。 这对检测和调整渲染性能很有用， 但对检测重要内容何时出现、何时可交互帮助不大。</li>
+<li>自定义指标： 衡量某个特定的用户实践， 例如 Twitter 的首次发推时间(Time To First Tweet)</li>
+</ul>
+</li>
+<li><p>为了使性能画像更加完整， 我们可以在所有类型中都选择一些指标， 正常来说比较重要的指标如下：</p>
+<ul>
+<li>首次有效绘制(First Meaningful Paint, FMP): 主要内容绘制的时间。</li>
+<li>首次可交互时间(Time To Interactive, TTI)： 页面布局已经稳定， 主线程可以响应用户的输入。</li>
+<li>首次输入延迟(First Input Delay, FID): 用户首次与页面交互，到网页能够响应该交互的时间。</li>
+<li>CPU 耗时： 描述主线程处理有效负载时繁忙程度的指标， 显示在绘制、渲染、运行脚本和加载时， 主线程被阻塞的频次和时长。利用 WebPageTest 可以获取主线程处理故障的详细视图。</li>
+<li>速度指数(Speed Index)：衡量视觉上页面内容充满的速度。</li>
+<li>自定义指标： 自定义指标由业务和用户体验专门设置， 需要对重要像素、关键脚本、必要的 CSS 样式和相关静态资源有个清晰的概念， 并能够测算用户需要多长时间来下载他们。</li>
+</ul>
+</li>
+</ol>
+<h2 id="设置合理的目标"><a href="#设置合理的目标" class="headerlink" title="设置合理的目标"></a>设置合理的目标</h2><ol>
+<li>100ms 响应时间， 60fps 动画。</li>
+<li>速度指数 &lt;1250， TTI(首次可交互时间) &lt; 5s， 关键文件大小 &lt; 170kb(压缩后，压缩前 0.7m)。<br>关键文件里包含关键路径 HTML/CSS/JS、路由、状态管理、使用程序、框架和应用程序逻辑。</li>
+<li>http 请求资源数 &lt;=6 ， ttp/2 请求资源数 &lt;=20。</li>
+<li>首屏代码覆盖率 &gt;=90%</li>
+</ol>
+<h2 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h2><h3 id="1-考虑使用-PRPL-模式-以及-Application-Shell-架构"><a href="#1-考虑使用-PRPL-模式-以及-Application-Shell-架构" class="headerlink" title="1. 考虑使用 PRPL 模式 以及 Application Shell 架构"></a>1. 考虑使用 <a href="https://web.dev/apply-instant-loading-with-prpl/" target="_blank" rel="noopener">PRPL 模式</a> 以及 <a href="https://developers.google.com/web/updates/2015/11/app-shell" target="_blank" rel="noopener">Application Shell 架构</a></h3><h4 id="PRPL模式"><a href="#PRPL模式" class="headerlink" title="PRPL模式"></a>PRPL模式</h4><ul>
+<li><p>P: Push(or preload) the most important resources.<br>使用 preload 预加载关键资源。</p>
+</li>
+<li><p>R: render the initial route as soon as possible.<br>提高 FP 速度的方法之一可以使用内联的方式嵌入关键 js/css 资源， 使用 async 异步加载 js 资源。<br>或者使用服务端渲染。 但是这两种方式都有缺点， 内联会导致代码维护困难， 服务端渲染会影响 TTI 指标。</p>
+</li>
+<li><p>P: Pre-cache remaining assets.<br>对静态资源进行预缓存， 可以使用 service-worker。</p>
+</li>
+<li><p>L: Lazy load other routes and non-critical assets.<br>使用合理的拆包策略，将所有类型资源拆分， 拆分后可以 preload 重要的资源。<br>对非关键图片进行懒加载。</p>
+</li>
+</ul>
+<h4 id="Application-Shell-架构"><a href="#Application-Shell-架构" class="headerlink" title="Application Shell 架构"></a>Application Shell 架构</h4><blockquote>
+<p>一个 application shell 是支持用户界面的最小HTML、CSS和JavaScript。 其特点在于加载较快、可以被缓存、动态显示内容。<br>Application Shell 的核心在于使用 service-worker 对 shell（外壳） 进行缓存，对于内容使用请求等动态展示。<br>在首次访问时为了尽快的展示内容（首次渲染），对首次渲染需要的 css 使用内联的方式， 对于外联的 css 进行异步加载可以使用 js 或者 RFA ， js 全部进行异步加载。  </p>
+</blockquote>
+<h3 id="2-考虑框架的选择"><a href="#2-考虑框架的选择" class="headerlink" title="2. 考虑框架的选择"></a>2. 考虑框架的选择</h3><p>并非每个项目都需要框架， 对于简单的业务使用原生 js 或者 jquery 开发能够大大减少 react，vue，angular 所带来的的 js 文件的大小。 js 大小的减少， 可以提升首次可交互的时间。<br>另外， 有测量表明针对首次内容渲染时间（从导航到浏览器从 DOM 渲染第一部分内容的时间）， vue 和 preact 是最快的， 其次是 react。</p>
+<h3 id="3-接口请求的优化"><a href="#3-接口请求的优化" class="headerlink" title="3. 接口请求的优化"></a>3. 接口请求的优化</h3><p>使用 rest 规范定义接口。<br>由于 rest 接口返回的数据量常常大于渲染所需要的数据量，如果很多资源需要来自接口的数据， 就会造成浪费。 此时可以考虑 GraphQL 进行接口查询。</p>
+<h3 id="4-选择合适的-CDN"><a href="#4-选择合适的-CDN" class="headerlink" title="4. 选择合适的 CDN"></a>4. 选择合适的 CDN</h3><p>根据你拥有的动态数据量， 将内容的某些部分推送到 CDN 并从中提供静态版本， 从而避免数据库请求。</p>
+<h3 id="5-资源优化"><a href="#5-资源优化" class="headerlink" title="5. 资源优化"></a>5. 资源优化</h3><h4 id="5-1-使用-Brotli-或-Zopfli-来对纯文本进行压缩"><a href="#5-1-使用-Brotli-或-Zopfli-来对纯文本进行压缩" class="headerlink" title="5.1 使用 Brotli 或 Zopfli 来对纯文本进行压缩"></a>5.1 使用 Brotli 或 Zopfli 来对纯文本进行压缩</h4><ul>
+<li>动态压缩是即时进行的。用户发出请求，内容被压缩（当用户等待时），压缩后的内容被提供。</li>
+<li>静态压缩是指在用户请求之前将资产压缩到磁盘上。当用户请求资产时，不会发生压缩。预压缩资产仅通过磁盘提供。</li>
+</ul>
+<p>Brotli 一种开源的无损数据格式，现已被所有现代浏览器所支持。因为它比较依赖配置，所以这种压缩可能会（非常）慢，但较慢的压缩意味着更高的压缩率。不过它解压速度很快。<br>对于动态压缩， 需要考虑其压缩资源所耗费的时间选择合适的压缩级别。 但是对于静态压缩， 首选最高级别的压缩。</p>
+<p>或者，你可以考虑使用将数据编码为 Deflate、Gzip 和 Zlib 格式的 Zopfli 的压缩算法。任何普通的 Gzip 压缩资源都可以通过 Zopfli 改进的 Deflate 编码达到比 Zlib 的最大压缩率小 3% 到 8%的文件大小。</p>
+<h4 id="5-2-响应式图片和-webp-和图片优化"><a href="#5-2-响应式图片和-webp-和图片优化" class="headerlink" title="5.2 响应式图片和 webp 和图片优化"></a>5.2 响应式图片和 webp 和图片优化</h4><p>尽量使用带有 img标签的 srcset、sizes 属性的响应式图片属性和 <picture> 元素。<br>WebP 图像文件大小等价于 Guetzli 和 Zopfli，但它并不支持像 JPEG 这样的渐进式渲染。所以尽管 WebP 图像在网络中的传输速度更快， 但是其兼容不够好， 而且渲染速度较慢， 需要结合场景来使用。</p>
+<p>确保 JPGE 是渐进加载且经过压缩的。</p>
+<h4 id="5-3-Web-字体"><a href="#5-3-Web-字体" class="headerlink" title="5.3 Web 字体"></a>5.3 Web 字体</h4><p>Web 字体首选系统自带的字体。<br>对于自定义的 web font 进行压缩， 因为 unicode 编码里面肯定会有很多空的编码。<br>根据场景使用 preload。</p>
+<h3 id="6-构建优化"><a href="#6-构建优化" class="headerlink" title="6. 构建优化"></a>6. 构建优化</h3><h4 id="6-1-降低-js-的解析成本"><a href="#6-1-降低-js-的解析成本" class="headerlink" title="6.1  降低 js 的解析成本"></a>6.1  降低 js 的解析成本</h4><p>js 有一个解析成本， 其相关因素有 js 的大小、硬件的差异。 而仅由 js 大小引起性能问题的情况相对少见， 反而是由于硬件的原因会造成解析和执行的时间有较大的差异。</p>
+<p>为了减少 js 的解析成本，在构建项目时我们可以借助一些工具来减少 js 的体积。如： webpack-bundle-analyzer, webpack size-plugin 等。<br>在开发时我们也可以借助一些工具来分析引入的依赖的大小，如： import cost for vscode。</p>
+<p>更有效的方法是避免解析成本， 如 Ember 推出的二进制模板，或者考虑 wasm。</p>
+<p>我们需要了解， 虽然 js 的大小很重要， 但是随着 js 体积的增大， 解析和编译时间不一定线性增加。</p>
+<h4 id="6-2-tree-shaking，-scope-hoisting，-code-splitting"><a href="#6-2-tree-shaking，-scope-hoisting，-code-splitting" class="headerlink" title="6.2 tree shaking， scope hoisting， code splitting"></a>6.2 tree shaking， scope hoisting， code splitting</h4><p>使用 tree shaking 清理无用的代码。<br>使用 scope hoisting 减少 js 体积。<br>使用 code splitting 分隔 bundle ， 按需加载。<br>考虑使用 preload-webpack-plugin 预加载 js 。</p>
+<h4 id="6-3-web-worker"><a href="#6-3-web-worker" class="headerlink" title="6.3 web worker"></a>6.3 web worker</h4><p>为了减少 TTI ， 可以考虑将高耗时的 js 放到 web worker 或者使用 service worker 缓存。</p>
+<h4 id="6-4-AoT-ahead-of-time"><a href="#6-4-AoT-ahead-of-time" class="headerlink" title="6.4 AoT(ahead of time)"></a>6.4 AoT(ahead of time)</h4><p>考虑使用 AoT(angular) 编译器将一些客户端渲染放到服务器上， 从而快速输出可用结果。</p>
+<p>其他的编译器还有 JIT (just-in-time) 即时编译器。</p>
+<h4 id="6-5-仅将遗留代码提供给旧版浏览器"><a href="#6-5-仅将遗留代码提供给旧版浏览器" class="headerlink" title="6.5 仅将遗留代码提供给旧版浏览器"></a>6.5 仅将遗留代码提供给旧版浏览器</h4><p>设置两个构建， 一个使用 es6， 一个使用 es5。<br>由于现代浏览器对于 es6 的支持较好， 我们可以使用 babel 转义目标浏览器所不支持的特性。使用 <code>script type=&#39;module&#39;</code> 让支持 es 模块的浏览器加载 es6 的构建。可以结合 <code>link rel=&quot;modulepreload&quot;</code> 使用。<br>对于老浏览器使用 <code>script nomodule</code> 加载 es5 构建。</p>
+<p><a href="https://developers.google.com/web/updates/2017/12/modulepreload" target="_blank" rel="noopener">modulepreload</a>可以预加载模块及其依赖，提高带宽使用率。</p>
+<h4 id="6-6-增量解耦"><a href="#6-6-增量解耦" class="headerlink" title="6.6 增量解耦"></a>6.6 增量解耦</h4><p>对于一些老项目， 可以使用增量解耦的方式淘汰依赖，如 jquery 等。<br>可以参考 <a href="https://github.blog/2018-09-06-removing-jquery-from-github-frontend/" target="_blank" rel="noopener">github jquery的淘汰</a>。<br>主要方式：</p>
+<ul>
+<li>检测每行代码 jquery 的比例，确保该比例是下降的。</li>
+<li>使用 eslint 的方式警告开发者不要使用 jquery 相关的 api。</li>
+<li>当检测到新增代码中使用了 jquery 特性时， 指定构建失败。</li>
+</ul>
+<h4 id="6-7-持续监控性能"><a href="#6-7-持续监控性能" class="headerlink" title="6.7 持续监控性能"></a>6.7 持续监控性能</h4><p>防止业务变更，代码变动导致性能波动，我们可以对项目进行持续监控。<br>我们可以借助一些可持续监控工具来描述性能画像， 甚至可以添加自定义指标。<br>例如 travis ci 结合 lighthhouse 可以很方便的获取到当前网页的性能。</p>
+<h3 id="7-其他优化"><a href="#7-其他优化" class="headerlink" title="7. 其他优化"></a>7. 其他优化</h3><h4 id="7-1-升级成-http-2-0"><a href="#7-1-升级成-http-2-0" class="headerlink" title="7.1 升级成 http 2.0"></a>7.1 升级成 http 2.0</h4><h4 id="7-2-资源提示"><a href="#7-2-资源提示" class="headerlink" title="7.2 资源提示"></a>7.2 资源提示</h4><h5 id="7-2-1-preload"><a href="#7-2-1-preload" class="headerlink" title="7.2.1 preload"></a>7.2.1 preload</h5><blockquote>
+<p>使用 <link rel="preload" href="" as=""> 可以用来预加载指定资源。<br>preload 用来预加载当前页面中重要的资源， 通过 as 属性标记当前资源的类型， 浏览器识别可以对加载的资源定义优先级。<br>当前页面跳转后， preload 资源会中断加载。</p>
+</blockquote>
+<h5 id="7-2-2-prefetch"><a href="#7-2-2-prefetch" class="headerlink" title="7.2.2 prefetch"></a>7.2.2 prefetch</h5><blockquote>
+<p>prefetch 是一个低优先级的资源提示，允许浏览器在后台（空闲时）获取将来可能用得到的资源，并且将他们存储在浏览器的缓存中。</p>
+</blockquote>
+<p>pretetch 针对于下一个页面需要预加载的资源。</p>
+<h5 id="7-2-3-prerender"><a href="#7-2-3-prerender" class="headerlink" title="7.2.3 prerender"></a>7.2.3 prerender</h5><blockquote>
+<p>与 prefetch 类似， 都是针对下一个页面的内容， 但是 prerender 会在后台把页面渲染出来， 使用不当容易造成资源浪费。<br>对于有 post、put等ajax 请求， video，audio标签等页面不会预渲染。</p>
+</blockquote>
+<h5 id="7-2-4-preconnect"><a href="#7-2-4-preconnect" class="headerlink" title="7.2.4 preconnect"></a>7.2.4 preconnect</h5><blockquote>
+<p>preconnect 预先完成 DNS 解析 + TLS 协商 + CP 握手。<br>preconnect 是个有效而且克制的资源优化方法，它不仅可以优化页面并且可以防止资源利用的浪费。<br>常用于对 cdn 与预连接。</p>
+</blockquote>
+<h5 id="7-2-5-dns-prefetch"><a href="#7-2-5-dns-prefetch" class="headerlink" title="7.2.5 dns-prefetch"></a>7.2.5 dns-prefetch</h5><blockquote>
+<p>dns 查找是一个耗时的过程， 使用 <link rel="dns-prefetch" href=""> 可以用来预解析当前页面可能跳转的域名。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/26/xing-neng-you-hua/" data-id="ck92ufa2r001zzcou05tr87qc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-http-and-https-and-tlsssl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/24/http-and-https-and-tlsssl/" class="article-date">
+  <time datetime="2020-03-24T17:32:50.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="OSI"><a href="#OSI" class="headerlink" title="OSI"></a>OSI</h2><p><img src="https://note.youdao.com/yws/api/personal/file/3E2AA26C69EA466D819AF0CEAFA08232?method=download&shareKey=890ceb7a1b8ed88eabba964a53289c23" alt="OSI模型"></p>
+<p>OSI 是用于描述网络通信的理论模型。 简单来说， 所有功能都被映射到七个层上。 最底层是最接近物理通信链路的层， 后面的层以次建立在其它层之上， 提供更高级别的抽象。 最顶层就是应用层， 携带应用数据。</p>
+<p>OSI 模型的优点：</p>
+<ul>
+<li>清晰的划分概念， 高层的协议不必担心在底层实现的功能。</li>
+<li>不同层次的协议可以加入通信或者从通信中删除， 一种底层协议可以服务于多种上层协议。</li>
+</ul>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>http 处于 通信模型的应用层， 基于 TCP/IP ， 因为 TCP 协议能保证数据不丢失是一种可靠的协议， 而 UDP 则是不可靠的协议。</p>
+<p>TCP/IP 协议你一定听过，TCP/IP 我们一般称之为协议簇，什么意思呢？就是 TCP/IP 协议簇中不仅仅只有 TCP 协议和 IP 协议，它是一系列网络通信协议的统称。而其中最核心的两个协议就是 TCP / IP 协议，其他的还有 UDP、ICMP、ARP 等等，共同构成了一个复杂但有层次的协议栈。</p>
+<p>IP 协议的全称是 Internet Protocol 的缩写，它主要解决的是通信双方寻址的问题。IP 协议使用 IP 地址 来标识互联网上的每一台计算机。</p>
+<p>DNS 的全称是域名系统（Domain Name System，缩写：DNS），它作为将域名和 IP 地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</p>
+<h3 id="HTTP-的影响因素"><a href="#HTTP-的影响因素" class="headerlink" title="HTTP 的影响因素"></a>HTTP 的影响因素</h3><p>影响一个 http 请求的主要因素有两个： 带宽、 延迟。 带宽收到客户端环境因素影响， 所以主要优化的方向是延迟， 而影响延迟的主要有下面三点。</p>
+<ul>
+<li>浏览器阻塞（HOL blocking）， 浏览器 http 请求是有并发限制的， 正常同个域名下是 4 个， 根据浏览器不同限制也不一样。</li>
+<li>DNS 查询 IP 也需要时间， 一般浏览器都会有 DNS 缓存来优化查询时间。</li>
+<li>建立连接 ， HTTP 传输层使用的是 TCP ， 需要经过三次握手之后才能建立连接， 但是这些连接无法被复用， 导致每次请求都要重新建立连接。</li>
+</ul>
+<h4 id="HTTP-1-0-与-1-1-的区别"><a href="#HTTP-1-0-与-1-1-的区别" class="headerlink" title="HTTP 1.0 与 1.1 的区别"></a>HTTP 1.0 与 1.1 的区别</h4><p><a href="https://mp.weixin.qq.com/s/GICbiyJpINrHZ41u_4zT-A?" target="_blank" rel="noopener">参考</a></p>
+<p>两者主要区别体现在一下几点：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>http 1.0</th>
+<th>http 1.1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缓存处理</td>
+<td>header 中以 If-Modified-Since， Expires 做判断标准</td>
+<td>引入了更多的缓存策略如 etag，If-None-Match</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td></td>
+<td>新增了 206（只请求资源的某个部分，对应 header 中的 range）； 新增了 409（conflict） 等错误状态码</td>
+</tr>
+<tr>
+<td>Host 头处理</td>
+<td>认为每台服务器都绑定唯一一个 IP 所以请求头中没有带 host 头</td>
+<td>随着虚拟机的发展，一个物理机可能对应多个虚拟主机，他们公用同一个 IP ， 请求头中必须带上 host</td>
+</tr>
+<tr>
+<td>长连接</td>
+<td>每次请求都要创建连接</td>
+<td>支持长连接， 在一个 TCP 连接上可以传送多个 HTTP 请求和响应（对应 keep-alive）， 减少连接的建立及关闭消耗</td>
+</tr>
+</tbody></table>
+<h4 id="HTTP-和-HTTPS-的区别"><a href="#HTTP-和-HTTPS-的区别" class="headerlink" title="HTTP 和 HTTPS 的区别"></a>HTTP 和 HTTPS 的区别</h4><ul>
+<li>HTTPS 的表示层中使用了 TLS 协议， 传输的内容都经过加密。</li>
+<li>HTTPS 的默认端口号为 443 ， HTTP 的则是 80。</li>
+</ul>
+<h4 id="SPDY-HTTP-1-X-的优化"><a href="#SPDY-HTTP-1-X-的优化" class="headerlink" title="SPDY  HTTP 1.X 的优化"></a>SPDY  HTTP 1.X 的优化</h4><p>SPDY 方案又花了 HTTP 1.x 的请求延时， 具体如下：</p>
+<ul>
+<li>降低延时， SPDY 采用多路复用多个请求 stream 共享一个 tcp 连接的方式， 解决了浏览器阻塞问题。</li>
+<li>请求优先级， SPDY 允许给每个 request 设置优先级， 优先相应重要的请求。</li>
+<li>header 压缩， 选择合适的算法可以减少包的大小。</li>
+<li>基于 HTTPS 的加密传输协议</li>
+<li>服务端推送， 采用了SPDY的网页，例如我的网页有一个sytle.css的请求，在客户端收到sytle.css数据的同时，服务端会将sytle.js的文件推送给客户端，当客户端再次尝试获取sytle.js时就可以直接从缓存中获取到，不用再发请求了。</li>
+</ul>
+<p>SPDY 构件图如下：<br><img src="http://mmbiz.qpic.cn/mmbiz_png/cmOLumrNib1cfBOtIMQ6JfSibJdd6QkQribjhshzcKo97UNNVIFgpOYZic95drsxo5TaiadPSSmcYhOI7GYAO99W6Sw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
+<p>SPDY位于HTTP之下，TCP和SSL之上，这样可以轻松兼容老版本的HTTP协议(将HTTP1.x的内容封装成一种新的frame格式)，同时可以使用已有的SSL功能。</p>
+<h4 id="HTTP2-0-SPDY-的升级版"><a href="#HTTP2-0-SPDY-的升级版" class="headerlink" title="HTTP2.0: SPDY 的升级版"></a>HTTP2.0: SPDY 的升级版</h4><p>HTTP2.0可以说是SPDY的升级版（其实原本也是基于SPDY设计的），但是，HTTP2.0 跟 SPDY 仍有不同的地方，如下：</p>
+<ol>
+<li>HTTP2.0 支持明文 HTTP 传输，而 SPDY 强制使用 HTTPS。</li>
+<li>HTTP2.0 消息头的压缩算法采用 HPACK 而非 SPDY 采用的 DEFLATE</li>
+</ol>
+<h4 id="HTTP2-0和-HTTP1-X-相比的新特性"><a href="#HTTP2-0和-HTTP1-X-相比的新特性" class="headerlink" title="HTTP2.0和 HTTP1.X 相比的新特性"></a>HTTP2.0和 HTTP1.X 相比的新特性</h4><ul>
+<li>HTTP2.0 采用二进制格式， HTTP1.x 的解析是基于文本。</li>
+<li>HTTP2.0 采用多路复用， 多个请求可并行在一个连接上执行， 而 HTTP 1.1 中的长连接一个连接每次只能处理一个请求，无法并行。</li>
+<li>HTTP2.0 有 header 压缩</li>
+<li>HTTP2.0 有服务端推送</li>
+</ul>
+<h2 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS/SSL"></a>TLS/SSL</h2><p>SSL 是由 Netscape 公司开发的协议， TLS1.0 基于 SSL3 进行了一些修改并改了协议名为 TLS 。</p>
+<h2 id="面试解答"><a href="#面试解答" class="headerlink" title="面试解答"></a>面试解答</h2><blockquote>
+<p>应用层 =&gt; 影响 http 因素 =&gt; http 1.0 &amp; 1.1 &amp; 2.0 各种优化及区别 =&gt; HTTPS</p>
+</blockquote>
+<p>HTTP 协议基于 TCP/IP 处于通信模型的应用层， 影响一个 http 请求的主要因素有两个： 带宽和延迟。 而其中 HTTP 协议的主要优化在于延迟， 影响延迟的也有三个主要因素：</p>
+<ul>
+<li>浏览器阻塞（http 请求的并发限制）</li>
+<li>DNS 域名解析</li>
+<li>TCP 连接</li>
+</ul>
+<p>在 1.1 版本中通过长连接复用 TCP 连接， 在 2.0 中通过多路复用 TCP 可以并行处理 http 请求优化延迟。<br>1.1 中还引入了 etag 、 If-None-Match 的缓存策略， 新增了 206 、409 等状态码， 请求头中必带 host 字段。</p>
+<p>HTTPS 在通信模型的表示层应用了 TLS/SSL 协议， 对传输内容进行了加密。</p>
+<p>对于 DNS 解析的优化， 浏览器本身就带有 dns 缓存数据， 对于需要预解析的域名可以使用 dns-prefetch 。</p>
+<h3 id="https-握手过程"><a href="#https-握手过程" class="headerlink" title="https 握手过程"></a>https 握手过程</h3><ol>
+<li>客户端向服务器发送支持的SSL/TSL的协议版本号，以及客户端支持的加密方法，和一个客户端生成的随机数</li>
+<li>服务器确认协议版本和加密方法，向客户端发送一个由服务器生成的随机数，以及数字证书</li>
+<li>客户端验证证书是否有效，有效则从证书中取出公钥，生成一个随机数，然后用公钥加密这个随机数，发给服务器</li>
+<li>服务器用私钥解密，获取发来的随机数</li>
+<li>客户端和服务器根据约定好的加密方法，使用前面生成的三个随机数，生成对话密钥，用来加密接下来的整个对话过程</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/24/http-and-https-and-tlsssl/" data-id="ck92ufa140008zcou5cbmbfnf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dan-dian-deng-lu-yuan-li" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/24/dan-dian-deng-lu-yuan-li/" class="article-date">
+  <time datetime="2020-03-24T16:16:04.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/24/dan-dian-deng-lu-yuan-li/">单点登录原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://yq.aliyun.com/articles/636281#" target="_blank" rel="noopener">参考文章</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/24/dan-dian-deng-lu-yuan-li/" data-id="ck92ufa0y0003zcou0cc926lj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-she-ji-mo-shi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/21/she-ji-mo-shi/" class="article-date">
+  <time datetime="2020-03-21T15:51:03.000Z" itemprop="datePublished">2020-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/21/she-ji-mo-shi/">设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ul>
+<li>工厂模式</li>
+<li>单例模式</li>
+<li>原型模式</li>
+</ul>
+<h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><ul>
+<li>装饰器模式</li>
+<li>适配器模式</li>
+<li>代理模式</li>
+<li>外观模式</li>
+<li>桥接模式</li>
+<li>组合模式</li>
+<li>享元模式</li>
+</ul>
+<h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><ul>
+<li>策略模式</li>
+<li>模板方法模式</li>
+<li>观察者模式</li>
+<li>迭代器模式</li>
+<li>职责链模式</li>
+<li>命令模式</li>
+<li>备忘录模式</li>
+<li>状态模式</li>
+<li>访问者模式</li>
+<li>中介者模式</li>
+<li>解释器模式</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><blockquote>
+<p>面向对象三要素： 继承、封装、多态。</p>
+</blockquote>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote>
+<p>子类可以继承父类的属性及方法。<br>继承可以将公共方法抽离， 提高复用，减少冗余。</p>
+</blockquote>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><blockquote>
+<p>数据的权限和保密。<br>public 类和实例都能访问、protected 子类及当前类可访问、private 只限当前类访问。<br>减少耦合，不该外露的不外露。<br>利于数据、接口的权限管理。</p>
+</blockquote>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><blockquote>
+<p>同一接口不同实现， 需要结合 java 等语言的接口、重写、重载功能。<br>在 js 中具体体现在子类对父类方法的重写。<br>保持子类的开放性和灵活性。</p>
+</blockquote>
+<h3 id="为何使用面向对象"><a href="#为何使用面向对象" class="headerlink" title="为何使用面向对象"></a>为何使用面向对象</h3><p>面向对象的实质是数据结构化。<br>对于计算机，结构化的才是最简单的。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><ul>
+<li>将 new 操作单独封装</li>
+<li>遇到 new 时， 就要考虑是否该使用工厂模式<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">jquery</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(selector)&#123;</span><br><span class="line">        <span class="keyword">this</span>.selector = selector</span><br><span class="line">    &#125;   </span><br><span class="line">    html()&#123;&#125;</span><br><span class="line">    css()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jquery(selector)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><blockquote>
+<p>一个类只有一个实例</p>
+</blockquote>
+<ul>
+<li><p>依赖于 private, 在 java 中如果在外面使用 newSingleObject() 会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleObject</span></span>&#123;</span><br><span class="line">    <span class="comment">//私有化构造函数， 外部无法使用 new 调用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleObject</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">   <span class="comment">// 私有化唯一实例</span></span><br><span class="line">    <span class="keyword">private</span> SingleObject instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SingleObject <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleObject();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>js 中没有 private 的概念，所以只能通过文档及使用来规范。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">SingleObject.getInstance = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> instance</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!instance)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleObject()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><ul>
+<li>旧接口格式和使用者不兼容</li>
+<li>中间加一个适配转换接口</li>
+</ul>
+<h3 id="装饰器功能"><a href="#装饰器功能" class="headerlink" title="装饰器功能"></a>装饰器功能</h3><ul>
+<li>为对象添加新功能</li>
+<li>不改变其原有的结构和功能<br>可以用来装饰类和函数。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  @decorator</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line">A = decorator(A)||A</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/21/she-ji-mo-shi/" data-id="ck92ufa1j000rzcoucgaf85sr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-hooks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/16/react-hooks/" class="article-date">
+  <time datetime="2020-03-16T23:41:13.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/16/react-hooks/">React Hooks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考文章：</p>
+<ul>
+<li><a href="https://github.com/brickspert/blog/issues/26" target="_blank" rel="noopener">React Hooks 原理</a></li>
+<li><a href="https://juejin.im/post/5c4c43f5e51d45518c681a69" target="_blank" rel="noopener">react hooks 实现原理</a></li>
+</ul>
+<h2 id="hooks-api-类型"><a href="#hooks-api-类型" class="headerlink" title="hooks api 类型"></a>hooks api 类型</h2><blockquote>
+<p>Hooks 主要分为以下三种：</p>
+</blockquote>
+<ul>
+<li>State hooks： 可以让函数式组件使用 state</li>
+<li>Effect hooks： 可以让函数式组件使用生命周期和 side effect， 如 useEffect 可以让组件具备 life-cycles。</li>
+<li>Custom hooks： 自定义 hooks</li>
+</ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="FiberNode"><a href="#FiberNode" class="headerlink" title="FiberNode"></a>FiberNode</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FiberNode</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  tag: WorkTag,</span></span></span><br><span class="line"><span class="function"><span class="params">  pendingProps: mixed,</span></span></span><br><span class="line"><span class="function"><span class="params">  key: null | string,</span></span></span><br><span class="line"><span class="function"><span class="params">  mode: TypeOfMode,</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Instance</span></span><br><span class="line">  <span class="keyword">this</span>.tag = tag;</span><br><span class="line">  <span class="keyword">this</span>.key = key;</span><br><span class="line">  <span class="keyword">this</span>.elementType = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.type = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.stateNode = <span class="literal">null</span>;<span class="comment">// 可能是 FiberRootNode、dom、FiberNode</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Fiber</span></span><br><span class="line">  <span class="keyword">this</span>.return = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.child = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.sibling = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.ref = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.pendingProps = pendingProps;</span><br><span class="line">  <span class="keyword">this</span>.memoizedProps = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.updateQueue = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.memoizedState = <span class="literal">null</span>; <span class="comment">//在使用 hooks 是此处指向的是 Hook 对象</span></span><br><span class="line">  <span class="keyword">this</span>.dependencies = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.mode = mode;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Effects</span></span><br><span class="line">  <span class="keyword">this</span>.effectTag = NoEffect;</span><br><span class="line">  <span class="keyword">this</span>.nextEffect = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.firstEffect = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.lastEffect = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.expirationTime = NoWork;</span><br><span class="line">  <span class="keyword">this</span>.childExpirationTime = NoWork;</span><br><span class="line">  <span class="keyword">this</span>.alternate = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hook"><a href="#Hook" class="headerlink" title="Hook"></a>Hook</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> type Hook = &#123;</span><br><span class="line">  memoizedState: any, <span class="comment">//存储 state 变量的地方</span></span><br><span class="line">  baseState: any, <span class="comment">//基于此状态进行更新</span></span><br><span class="line">  baseUpdate: Update&lt;any, any&gt; | <span class="literal">null</span>,</span><br><span class="line">  queue: UpdateQueue&lt;any, any&gt; | <span class="literal">null</span>, <span class="comment">//存放  hooks 执行的回调</span></span><br><span class="line">  next: Hook | <span class="literal">null</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type Effect = &#123;</span><br><span class="line">  tag: HookEffectTag, <span class="comment">//当前 hook 作用的生命周期</span></span><br><span class="line">  create: <span class="function"><span class="params">()</span> =&gt;</span> <span class="function">(<span class="params">(</span>) =&gt;</span> <span class="keyword">void</span>) | <span class="keyword">void</span>,</span><br><span class="line">  destroy: <span class="function">(<span class="params">(</span>) =&gt;</span> <span class="keyword">void</span>) | <span class="keyword">void</span>,</span><br><span class="line">  deps: <span class="built_in">Array</span>&lt;mixed&gt; | <span class="literal">null</span>,</span><br><span class="line">  next: Effect,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">type Update&lt;S, A&gt; = &#123;</span><br><span class="line">  expirationTime: ExpirationTime,</span><br><span class="line">  suspenseConfig: <span class="literal">null</span> | SuspenseConfig,</span><br><span class="line">  action: A,</span><br><span class="line">  eagerReducer: <span class="function">(<span class="params">(S, A</span>) =&gt;</span> S) | <span class="literal">null</span>,</span><br><span class="line">  eagerState: S | <span class="literal">null</span>,</span><br><span class="line">  next: Update&lt;S, A&gt; | <span class="literal">null</span>,</span><br><span class="line"></span><br><span class="line">  priority?: ReactPriorityLevel,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/16/react-hooks/" data-id="ck92ufa1i000qzcoubwor9sa1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-dom-diff" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/15/react-dom-diff/" class="article-date">
+  <time datetime="2020-03-15T18:49:32.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/15/react-dom-diff/">React DOM Diff</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考文章：</p>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm" target="_blank" rel="noopener">官方： reconciliation</a></li>
+<li><a href="https://juejin.im/post/5d3e3231e51d4510926a7c39#comment" target="_blank" rel="noopener">Deep In React 之详谈 React 16 Diff 策略(二)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/57346388" target="_blank" rel="noopener">深入React fiber架构及源码</a></li>
+<li><a href="https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e" target="_blank" rel="noopener">Inside Fiber: in-depth overview of the new reconciliation algorithm in React</a><blockquote>
+<p>首先开头需要明确 dom diff 的目的： 复用节点， 减少 dom 方面的开销。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Diff-前提策略"><a href="#Diff-前提策略" class="headerlink" title="Diff 前提策略"></a>Diff 前提策略</h2><ol>
+<li>Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。</li>
+<li>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。</li>
+<li>对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。</li>
+</ol>
+<h2 id="Diff-过程"><a href="#Diff-过程" class="headerlink" title="Diff 过程"></a>Diff 过程</h2><blockquote>
+<p>React 将渲染分为两个阶段， render 和 commit 。 在 render 阶段中会构建 workInProgress tree ， 并且会得到一个 effect list， 这个 effect list 就是在 commit 阶段需要处理的节点。</p>
+</blockquote>
+<h3 id="side-effects"><a href="#side-effects" class="headerlink" title="side effects"></a>side effects</h3><blockquote>
+<p>You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” (or “effects” for short) because they can affect other components and can’t be done during rendering.<br>在 react 文档中将请求、订阅、操作 DOM 的这些操作叫做 “side effects” , 或者简单称为 “effects” 。<br>大部分 state 和 props 更新的操作都会导致 effects ，  React 在 fiber 节点中使用 effectTag 字段来记录对应的 effects 操作。</p>
+</blockquote>
+<h3 id="effectTag"><a href="#effectTag" class="headerlink" title="effectTag"></a>effectTag</h3><blockquote>
+<p>对应上面的的 side effects ， 每个 effect 操作类型在 react 都有对应的变量表示。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Don't change these two values. They're used by React Dev Tools.</span></span><br><span class="line"><span class="keyword">var</span> NoEffect = <span class="comment">/*              */</span><span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> PerformedWork = <span class="comment">/*         */</span><span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can change the rest (and add more).</span></span><br><span class="line"><span class="keyword">var</span> Placement = <span class="comment">/*             */</span><span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> Update = <span class="comment">/*                */</span><span class="number">4</span>;</span><br><span class="line"><span class="keyword">var</span> PlacementAndUpdate = <span class="comment">/*    */</span><span class="number">6</span>;</span><br><span class="line"><span class="keyword">var</span> Deletion = <span class="comment">/*              */</span><span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> ContentReset = <span class="comment">/*          */</span><span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> Callback = <span class="comment">/*              */</span><span class="number">32</span>;</span><br><span class="line"><span class="keyword">var</span> DidCapture = <span class="comment">/*            */</span><span class="number">64</span>;</span><br><span class="line"><span class="keyword">var</span> Ref = <span class="comment">/*                   */</span><span class="number">128</span>;</span><br><span class="line"><span class="keyword">var</span> Snapshot = <span class="comment">/*              */</span><span class="number">256</span>;</span><br><span class="line"><span class="keyword">var</span> Passive = <span class="comment">/*               */</span><span class="number">512</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Passive &amp; Update &amp; Callback &amp; Ref &amp; Snapshot</span></span><br><span class="line"><span class="keyword">var</span> LifecycleEffectMask = <span class="comment">/*   */</span><span class="number">932</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Union of all host effects</span></span><br><span class="line"><span class="keyword">var</span> HostEffectMask = <span class="comment">/*        */</span><span class="number">1023</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Incomplete = <span class="comment">/*            */</span><span class="number">1024</span>;</span><br><span class="line"><span class="keyword">var</span> ShouldCapture = <span class="comment">/*         */</span><span class="number">2048</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NoEffect:：effectTag 初始值， 表示 NoWork。</li>
+<li>PerformedWork：react devtools 使用。</li>
+<li>Placement：插入新的子节点。</li>
+<li>Update：当 props、state发生改变会标记为 update，在执行 commitUpdate 函数时进行属性更新。会调用对应的生命周期函数。</li>
+<li>Deletion：标记将要删除的节点。</li>
+<li>ContentReset：当从文本域节点切换到非文本域或空节点时，打上此标记，将文本内容进行重置，文本域节点包括textarea、option、noscript、string、number和直接在标签中写入的__html。当检测到标记后，执行commitResetTextContent函数将对应节点到text清空。</li>
+<li>Callback：当setState、forceUpdate有callback函数，或者在Commit阶段捕获到错误时，会更新update.callback，并标记Callback，随后检测到标记后会触发commitLifeCycles函数，根据不同到组件类型进行不同的commit。</li>
+<li>DidCapture：针对于懒加载的React.Suspense（SuspenseComponent）组件提供的标志位，DidCapture位置位表示要渲染的组件被挂起，进而先渲染fallback的内容。</li>
+<li>ShouldCapture：标记是否需要将节点挂起，一般捕获边界错误或者超时会置位，随后用于判断是否进行DidCapture。</li>
+<li>Ref：当节点中存在属性ref时，会进行markRef当标记，随后会在commitAllLifeCycles阶段执行commitAttachRef触发相应当ref回调函数。</li>
+<li>Snapshot：在渲染更新之前，当前后当props或state发生变化时，触 getSnapshotBeforeUpdate生命周期钩子。</li>
+</ul>
+<h3 id="effects-list"><a href="#effects-list" class="headerlink" title="effects list"></a>effects list</h3><blockquote>
+<p>effects list 是一个链表式的结构， 将所有需要更新的子 fiber 节点连接起来。<br>在遍历 fiber tree 时采用的时 DFS 遍历算法， 所以正常来说 effects list 中的节点应该也是按照自下而上的方式连接的。<br>在 fiber 节点中对应的有这么几个字段来维护自己的 effects list ： firstEffect、lastEffect、nextEffect。</p>
+</blockquote>
+<h3 id="详细过程解析"><a href="#详细过程解析" class="headerlink" title="详细过程解析"></a>详细过程解析</h3><h4 id="reconcileChildren"><a href="#reconcileChildren" class="headerlink" title="reconcileChildren"></a>reconcileChildren</h4><blockquote>
+<p>react diff 从 reconcileChildren 函数开始， 首次渲染调用时, current 为 null ， 此处我们只关心 reconcileChildFibers 函数。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">reconcileChildren</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  current: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">  workInProgress: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">  nextChildren: any,</span></span></span><br><span class="line"><span class="function"><span class="params">  renderExpirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (current === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// If this is a fresh new component that hasn't been rendered yet, we</span></span><br><span class="line">    <span class="comment">// won't update its child set by applying minimal side-effects. Instead,</span></span><br><span class="line">    <span class="comment">// we will add them all to the child before it gets rendered. That means</span></span><br><span class="line">    <span class="comment">// we can optimize this reconciliation pass by not tracking side-effects.</span></span><br><span class="line">    workInProgress.child = mountChildFibers(</span><br><span class="line">      workInProgress,</span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      nextChildren,</span><br><span class="line">      renderExpirationTime,</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// If the current child is the same as the work in progress, it means that</span></span><br><span class="line">    <span class="comment">// we haven't yet started any work on these children. Therefore, we use</span></span><br><span class="line">    <span class="comment">// the clone algorithm to create a copy of all the current children.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we had any progressed work already, that is invalid at this point so</span></span><br><span class="line">    <span class="comment">// let's throw it out.</span></span><br><span class="line">    workInProgress.child = reconcileChildFibers(</span><br><span class="line">      workInProgress,</span><br><span class="line">      current.child,</span><br><span class="line">      nextChildren,</span><br><span class="line">      renderExpirationTime,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="reconcileChildFibers"><a href="#reconcileChildFibers" class="headerlink" title="reconcileChildFibers"></a>reconcileChildFibers</h4><blockquote>
+<p>该函数接受四个参数，返回结果是 Fiber 或者 null。</p>
+</blockquote>
+<ul>
+<li>returnFiber<Fiber>： diff 开始的容器节点。</li>
+<li>currentFirstChild&lt;Fiber | null&gt;：容器节点的第一个子节点。</li>
+<li>newChild<any>：即将更新的 vdom 节点，可能是 TextNode、ReactElement、数组， 不是 fiber 节点。</li>
+<li>expirationTime<ExpirationTime>：调度任务需要使用的参数。</li>
+</ul>
+<h4 id="1-Diff-Single-TextNode"><a href="#1-Diff-Single-TextNode" class="headerlink" title="1. Diff Single TextNode"></a>1. Diff Single TextNode</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;aaa&gt;&lt;<span class="regexp">/aaa&gt;</span></span><br><span class="line"><span class="regexp">            &lt;bbb&gt;&lt;/</span>bbb&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            文字节点</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如上代码所示， 从 1 状态转变到 2 状态，对于 1 中来说 aaa bbb 可以为任何类型， 2中变成的 TextNode 节点。 此时 Diff 该如何操作呢？<br>react 会判断 currentFirstChild 的 tag 是否为 TextNode 类型， 如果 aaa 是 TextNode 类型， 那么会复用该节点， 并且将后面所有的兄弟节点 bbb 打上 delete 标签。<br>如果 aaa 不是 TextNode 类型， 那么 react 会删除所有的子节点即 aaa bbb 都会被删除， 然后重新创建一个 TextNode 节点。<br>对应源码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reconcileSingleTextNode</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    returnFiber: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">    currentFirstChild: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">    textContent: string,</span></span></span><br><span class="line"><span class="function"><span class="params">    expirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>): <span class="title">Fiber</span> </span>&#123;</span><br><span class="line">    <span class="comment">// There's no need to check for keys on text nodes since we don't have a</span></span><br><span class="line">    <span class="comment">// way to define them.</span></span><br><span class="line">    <span class="keyword">if</span> (currentFirstChild !== <span class="literal">null</span> &amp;&amp; currentFirstChild.tag === HostText) &#123;</span><br><span class="line">      <span class="comment">// We already have an existing node so let's just update it and delete</span></span><br><span class="line">      <span class="comment">// the rest.</span></span><br><span class="line">      deleteRemainingChildren(returnFiber, currentFirstChild.sibling);</span><br><span class="line">      <span class="keyword">const</span> existing = useFiber(currentFirstChild, textContent, expirationTime);</span><br><span class="line">      existing.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> existing;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// The existing first child is not a text node so we need to create one</span></span><br><span class="line">    <span class="comment">// and delete the existing ones.</span></span><br><span class="line">    deleteRemainingChildren(returnFiber, currentFirstChild);</span><br><span class="line">    <span class="keyword">const</span> created = createFiberFromText(</span><br><span class="line">      textContent,</span><br><span class="line">      returnFiber.mode,</span><br><span class="line">      expirationTime,</span><br><span class="line">    );</span><br><span class="line">    created.return = returnFiber;</span><br><span class="line">    <span class="keyword">return</span> created;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Diff-Single-React-Element"><a href="#2-Diff-Single-React-Element" class="headerlink" title="2. Diff Single React Element"></a>2. Diff Single React Element</h4><p>与 TextNode 类似， react 首先会判断容器节点的子节点中是否存在 key 与 newChild 相同的节点， 如果有并且 tag 也一样就复用该节点， 并删掉剩余节点。如果 key 一样， 但是 tag 不一样， 那么删掉所有节点， 无法复用。<br>如果子节点的 key 不一样， 则删掉当前的子节点， 并继续遍历下个 sibling 节点。<br>此时可能还会出现一个情况， 就是 newChild 和 child 节点都没有 key ， key 都为 null 。 那么此时会走到 tag 判断的地方， 如果两者的 tag 一样， 那么仍然会重用该节点。注释中也说明该情况只有 list 里面的第一个元素会走该流程， 因为如果第一个元素的 tag 不匹配的话， 会删除所有的 sibling 节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reconcileSingleElement</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    returnFiber: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">    currentFirstChild: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">    element: ReactElement,</span></span></span><br><span class="line"><span class="function"><span class="params">    expirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>): <span class="title">Fiber</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> key = element.key;</span><br><span class="line">    <span class="keyword">let</span> child = currentFirstChild;</span><br><span class="line">    <span class="keyword">while</span> (child !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">// <span class="doctag">TODO:</span> If key === null and child.key === null, then this only applies to</span></span><br><span class="line">      <span class="comment">// the first item in the list.</span></span><br><span class="line">      <span class="keyword">if</span> (child.key === key) &#123;</span><br><span class="line">        <span class="keyword">if</span> (</span><br><span class="line">          child.tag === Fragment</span><br><span class="line">            ? element.type === REACT_FRAGMENT_TYPE</span><br><span class="line">            : child.elementType === element.type ||</span><br><span class="line">              <span class="comment">// Keep this check inline so it only runs on the false path:</span></span><br><span class="line">              (__DEV__</span><br><span class="line">                ? isCompatibleFamilyForHotReloading(child, element)</span><br><span class="line">                : <span class="literal">false</span>)</span><br><span class="line">        ) &#123;</span><br><span class="line">          deleteRemainingChildren(returnFiber, child.sibling);</span><br><span class="line">          <span class="keyword">const</span> existing = useFiber(</span><br><span class="line">            child,</span><br><span class="line">            element.type === REACT_FRAGMENT_TYPE</span><br><span class="line">              ? element.props.children</span><br><span class="line">              : element.props,</span><br><span class="line">            expirationTime,</span><br><span class="line">          );</span><br><span class="line">          existing.ref = coerceRef(returnFiber, child, element);</span><br><span class="line">          existing.return = returnFiber;</span><br><span class="line">          <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">            existing._debugSource = element._source;</span><br><span class="line">            existing._debugOwner = element._owner;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> existing;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          deleteRemainingChildren(returnFiber, child);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        deleteChild(returnFiber, child);</span><br><span class="line">      &#125;</span><br><span class="line">      child = child.sibling;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (element.type === REACT_FRAGMENT_TYPE) &#123;</span><br><span class="line">      <span class="keyword">const</span> created = createFiberFromFragment(</span><br><span class="line">        element.props.children,</span><br><span class="line">        returnFiber.mode,</span><br><span class="line">        expirationTime,</span><br><span class="line">        element.key,</span><br><span class="line">      );</span><br><span class="line">      created.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> created;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> created = createFiberFromElement(</span><br><span class="line">        element,</span><br><span class="line">        returnFiber.mode,</span><br><span class="line">        expirationTime,</span><br><span class="line">      );</span><br><span class="line">      created.ref = coerceRef(returnFiber, currentFirstChild, element);</span><br><span class="line">      created.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> created;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Diff-Array"><a href="#3-Diff-Array" class="headerlink" title="3. Diff Array"></a>3. Diff Array</h4><p>  对于 newChild 是数组类型来说， 情况相对比较复杂， 源码也比较长， 此处就不放了。下面分成几个情况来解析。</p>
+<h5 id="updateSlot"><a href="#updateSlot" class="headerlink" title="updateSlot"></a>updateSlot</h5><p>updateSlot 接受四个参数， 其中 oldFiber 是 reconcileChildrenArray 传入的 sibling 节点， newChild 是当前遍历的 newChildren 的元素。<br>函数中首先会判断 newChild 是不是 TextNode 节点， 然后判断 oldFiber 中是否存在 key ， 如果存在 key 那么 return null ，否则进入 updateTextNode 函数。 因为 TextNode 节点不会存在 key。<br>如果 newChild 是 react element 则会判断 key 是否一致， 一致的时候则进入 update， 只不过此处需要判断 newChild.type 是不是 fragment ， 如果是 fragment 的话 update 传递的是 newChild.props.children。<br>update 里面会判断是否能重用， 判断的条件与前面解释的过程一样，不能重用的话就会床架你新的节点。<br>对于 updateSlot 来说只要是无法重用的情况下都会 return null。</p>
+<h5 id="reconcileChildrenArray"><a href="#reconcileChildrenArray" class="headerlink" title="reconcileChildrenArray"></a>reconcileChildrenArray</h5><blockquote>
+<p> Diff Array 都会进入 reconcileChildrenArray 函数， 在该函数中， react 会取出容器节点的第一个节点和 newChild 的第一个元素。 之后会遍历 newChildren 并且每次都会进入 updateSlot 函数中。<br>如果 updateSlot 返回 null 的话说明当前的 oldFiber 无法重用， newChildren 的遍历会被终止。此时的场景就是可能 sibling 的顺序被移动了， 例如第一个 sibling 被移到了最后一个。 此时 react 使用所有的从当前 sibling 节点时候后面所有节点会生成一个 existingChildren 的 map ， key 为节点的key ， value 则为节点本身。之后会继续之前中断的 newChildren 遍历， 从 existingChildren 查找是否有重用的节点， 具体逻辑在 updateFromMap 中， 基本上就是有没有可复用的节点， 没有就重新创建，否则重用。</p>
+</blockquote>
+<p>总和以上分析， 对于 Diff Array 的情况可以分为以下几种：</p>
+<ol>
+<li>新增节点， 前面相同的节点全部复用， 新增的节点全部新创建。</li>
+<li>节点顺序不变， 只修改节点属性，全部节点复用。</li>
+<li>节点顺序改变， 所有节点复用。 具体逻辑： 前面顺序未变的在第一次遍历时可以全部复用， 在发现 oldFiber 和 newChild key 不一致的情况时， 会生成一个 map ， 在 map 找有没有可以复用的节点，没有则新增。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/15/react-dom-diff/" data-id="ck92ufa2m001vzcoua6bzfaq6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-promise-a-gui-fan-fan-yi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/11/promise-a-gui-fan-fan-yi/" class="article-date">
+  <time datetime="2020-03-11T14:23:15.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/11/promise-a-gui-fan-fan-yi/">Promise A+ 规范翻译及个人总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻译自<a href="https://promisesaplus.com/" target="_blank" rel="noopener">原文链接</a>， 本文格式基本参照原文， 对于带有标号的术语，请参考对应标号的解释。<br> 英语水平所限， 看不懂的可以阅读原文。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<p>一个针对实现者，实现健全的，可操作的 JavaScript promise 的开放的规范。</p>
+</blockquote>
+<p>一个 <em>promise</em> 代表了一个异步操作的最终的结果。与 promise 互动的主要方法是通过它的 <code>then</code> 方法， <code>then</code> 方法用来注册接收 promise 的终值或者为何该 promise 为什么无法完成的 reason 的回调。</p>
+<p>此规范详细说明了 <code>then</code> 方法的行为，提供一个所有符合 Promises/A+ 规范实现的 promise 都可以依赖的可互操作的基础。 因此， 此规范需要考虑到非常稳定。虽然 Promises/A+ 组织可能会偶尔修改此规范， 对其进行一些向后兼容的小修改以解决新发现的问题，只有在进过仔细考虑、讨论和测试之后我们才会集成大型的或向后不兼容的变更。</p>
+<p>从历史上看，Promises / A +阐明了早期Promises / A提案的行为条款，将其扩展为涵盖实际行为，并省略了未指定或有问题的部分。</p>
+<p>最后， Promises/A+ 规范的核心不涉及如何创建、完成或者拒绝 promises ， 而是聚焦于提供可互操作的<code>then</code>方法。未来在配套规范中的工作可能会涉及这些主题。</p>
+<h2 id="1-术语"><a href="#1-术语" class="headerlink" title="1. 术语"></a>1. 术语</h2><p>1.1.    “promise” 是一个带有符合本规范中<code>then</code> 方法的行为的对象或者函数。<br>1.2.    “thenable” 是一个定义 <code>then</code> 方法的对象或者函数。<br>1.3.    “value” 是任意合法的 JavaScript 值， 包含 <code>undefined</code>, <code>thenable</code>,<code>promise</code>。<br>1.4.    “exception” 是通过 <code>throw</code> 声明语句抛出来的值。<br>1.5.    “reason” 是表明为何一个 promise 被拒绝的值。</p>
+<h2 id="2-要求"><a href="#2-要求" class="headerlink" title="2.  要求"></a>2.  要求</h2><h3 id="2-1-Promise-状态"><a href="#2-1-Promise-状态" class="headerlink" title="2.1 Promise 状态"></a>2.1 Promise 状态</h3><p>一个 promise 必须处于以下三个状态之中： pending， fulfilled， rejected 。</p>
+<p>2.1.1.  当处于 pending 状态<br>        2.1.1.1.    promise 可以转变为 fulfilled 或者 rejected 状态。</p>
+<p>2.1.2.  当处于 fulfilled 状态<br>        2.1.2.1.    promise 无法转变成其他状态。<br>        2.1.2.2.    promise 必须要有一个无法改变的 value。</p>
+<p>2.1.3.  当处于 rejected 状态<br>        2.1.3.1.    promise 无法转变成其他状态。<br>        2.1.3.2.    promise 必须要有一个无法改变的 value。</p>
+<p>在此处， 无法改变意味着不可变， 类似 <code>===</code> 全等， 但不意味深层次的不变。（译者： 可以理解为指针不变即可。）</p>
+<h3 id="2-2-then-方法"><a href="#2-2-then-方法" class="headerlink" title="2.2 then 方法"></a>2.2 <code>then</code> 方法</h3><p>一个 promise 必须提供一个 <code>then</code> 方法去获取它当前或者最终的 value 或 reason 。<br>promise 的<code>then</code> 方法接收两个参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br></pre></td></tr></table></figure>
+
+<p>2.2.1.  <code>onFulfilled</code> 和 <code>onRejected</code> 参数都是可选的<br>        2.2.1.1.     如果 <code>onFulfilled</code> 不是函数， 它将会被忽略。<br>        2.2.1.2.     如果 <code>onRejected</code> 不是函数， 它将会被忽略。</p>
+<p>2.2.2.  如果 <code>onFulfilled</code> 是函数<br>        2.2.2.1.    在 <code>promise</code> 处于<code>fulfilled</code>状态之后， 它将被调用， 其第一个参数为 <code>promise</code> 的 value。<br>        2.2.2.2.    在 <code>promise</code> 处于<code>fulfilled</code>状态之前， 它无法被调用。<br>        2.2.2.3.    它只能被调用一次。</p>
+<p>2.2.3.  如果 <code>onRejected</code> 是函数<br>         2.2.3.1.    在 <code>promise</code> 处于<code>rejected</code>状态之后， 它将被调用， 其第一个参数为 <code>promise</code> 的 reason 。<br>        2.2.3.2.    在 <code>promise</code> 处于<code>rejected</code>状态之前， 它无法被调用。<br>        2.2.3.3.    它只能被调用一次。</p>
+<p>2.2.4.  <code>onFulfilled</code> 和 <code>onRejected</code> 函数只有当 <code>execution context stack</code> (执行栈?执行上下文?) 只包含 <code>platform code</code>[3.1] 。</p>
+<p>2.2.5.  <code>onFulfilled</code> 和 <code>onRejected</code>  必须以函数的方式调用(例如， 没有 <code>this</code>)[3.2]</p>
+<p>2.2.6.  <code>then</code> 可能在同一个 promise 中调用多次<br>        2.2.6.1.    当 promise 处于 <code>fulfilled</code> 状态， 所有各自的<code>onFulfilled</code>回调必须按照它们的<code>then</code> 的原始顺序执行。<br>        2.2.6.2.    当 promise 处于 <code>rejected</code> 状态,  所有各自的<code>onRejected</code>回调必须按照它们的<code>then</code>的原始顺序执行。</p>
+<p>2.2.7.  <code>then</code> 需要返回一个 promise [3.3]</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise2 = promise1.then(onFulfilled, onRejected);</span><br></pre></td></tr></table></figure>
+
+<p> 2.2.7.1.    如果 <code>onFulfilled</code> 或者<code>onRejected</code> 之一返回一个 value <code>x</code>,  执行 promise resolution procedure <code>[[Resolve]](promise2, x)</code>。<br> 2.2.7.2.    如果 <code>onFulfilled</code> 或者<code>onRejected</code> 之一抛出一个 exception <code>e</code> , <code>promise2</code> 必须被 rejected 并使用 <code>e</code> 作为 reason。<br>2.2.7.3.    如果 <code>onFulfilled</code> 不是一个函数， 并且 <code>promise1</code> 处于 <code>fulfilled</code> 状态， <code>promise2</code> 必须被置为 <code>fulfilled</code> 状态， 并且使用 <code>promise1</code> 的 <code>value</code> 作为 <code>promise2</code> 的 <code>value</code>。<br>2.2.7.4.    如果 <code>onRejected</code>不是一个函数， 并且 <code>promise1</code> 处于 <code>rejected</code> 状态， <code>promise2</code> 必须被置为 <code>rejected</code> 状态， 并且使用 <code>promise1</code> 的 <code>reason</code> 作为 <code>promise2</code> 的 <code>reason</code>。</p>
+<h3 id="2-3-The-Promise-Resolution-Procedure-Promise-解决程序"><a href="#2-3-The-Promise-Resolution-Procedure-Promise-解决程序" class="headerlink" title="2.3 The Promise Resolution Procedure (Promise 解决程序)"></a>2.3 The Promise Resolution Procedure (Promise 解决程序)</h3><p>The promise resolution procedure 是一个抽象操作， 接受一个 promise 和 一个 value 作为输入，表示为 <code>[[Resolve]](promise, x)</code> 。 如果 <code>x</code> 是一个 thenable , 假设 <code>x</code> 的行为至少在某种程度上与 promise 类似，它将会尝试使用 <code>x</code> 的状态作为 <code>promise</code> 的状态。<br>否则， 它将会使用 value <code>x</code> 将 <code>promise</code> 置为 <code>fulfilled</code> 状态。</p>
+<p>只要它们暴露一个基于 Promises/A+规范实现的 <code>then</code> 方法， 对于 thenables 的处理就允许 promise 互操作的实现。 它也允许 Promises/A+ 同化使用 reasonable <code>then</code> 方式的不合格的实现。</p>
+<p>执行 <code>[[Resolve]](promise, x)</code> 会执行以下步骤：</p>
+<p>2.3.1.  如果 <code>promise</code> 和 <code>x</code> 指向同一个对象， <code>promise</code> 使用 <code>TypeError</code> 作为 reason， 并置为 <code>rejected</code> 状态。 (new Promise 里面必须调用 resolve 或者 reject， 如何将 promise 和 x 指向同一个对象？)</p>
+<p>2.3.2.  如果 <code>x</code> 是一个 promise， 采用<code>x</code>的状态[3.4]。<br>        2.3.2.1.    如果 <code>x</code> 处于 pending 状态， <code>promise</code> 必须处于 pending<br>        状态直到 <code>x</code> 状态改变。<br>         2.3.2.2.    如果 <code>x</code> 处于 fulfilled 状态, 使用 <code>x</code> 的 value 将<code>promise</code> 置为 fulfilled 状态。<br>        2.3.2.3.     如果 <code>x</code> 处于 rejected 状态, 使用 <code>x</code> 的 reason 将<code>promise</code> 置为 rejected 状态。</p>
+<p>2.3.3.  如果 <code>x</code> 是一个对象或者函数<br>        2.3.3.1.    让 <code>then</code> 变成 <code>x.then</code>. [3.5]<br>        2.3.3.2.    如果查找 <code>x.then</code> 属性造成抛出异常 <code>e</code>, 将 promise 置为<code>rejected</code> 状态并使用 <code>e</code> 作为 reason。<br>        2.3.3.3.    如果 <code>then</code> 是一个函数， 会调用该函数，并使用使用 <code>x</code>作为 this 。该函数有两参数， 第一个参数为 <code>resolvePromise</code>, 第二个参数为<code>rejectPromise</code><br>                    2.3.3.3.1.  如果 <code>resolvePromise</code> 使用 value <code>y</code> 调用， 执行 <code>[[Resolve]](promise, y)</code>。<br>                    2.3.3.3.2.  如果 <code>rejectPromise</code> 使用 reason <code>r</code> 调用， 使用 <code>r</code> 将 promise 状态置为 <code>rejected</code>。<br>                    2.3.3.3.3.  如果 <code>resolvePromise</code> 和<code>rejectPromise</code>都被调用， 或者多次调用了相同参数， 第一次调用会执行， 其他的会被忽略。<br>                    2.3.3.3.4.  如果执行的 then 抛出异常 <code>e</code><br>                                    2.3.3.3.4.1.    如果  <code>resolvePromise</code> 或<code>rejectPromise</code>被调用， 忽略它。<br>                                    2.3.3.3.4.2.    使用 <code>e</code> 将 promise 置为 <code>rejected</code> 状态。<br>        2.3.3.4.    如果 then  不是函数， 使用 <code>x</code> 将 promise 置为 <code>fulfilled</code> 状态。</p>
+<p> 2.3.4.     如果<code>x</code>不是对象或者函数， 使用 <code>x</code> 将 promise 置为 <code>fulfilled</code> 状态。</p>
+<p> 如果 promise resolved 了一个 thenable 对象， 该 thenable 对象参与到了循环的 thenable 链， 例如 <code>[[Resolve]](promise, thenable)</code> 的递归性质最终会导致 <code>[[Resolve]](promise, thenable)</code> 被再次调用， 最终会导致无限递归。我们鼓励检测这样的递归并且使用一个带有信息的<code>TypeError</code> reason 将 promise 置为<code>rejected</code>状态， 但此实现不是必须的。</p>
+<h3 id="3-Notes"><a href="#3-Notes" class="headerlink" title="3. Notes"></a>3. Notes</h3><p> 3.1.    此处的 “platform code”代表引擎、环境和 promise 实现的代码。实际上， 这个要求确保在事件循环中轮到 then 调用之后，<code>onFulfilled</code> 和 <code>onRejected</code> 能在最新的执行栈下异步执行。这个可以通过使用宏任务方法例如 <code>setTimeout</code> <code>setImmediate</code> 或者 微任务方法例如<code>MutationObserver</code> <code>process.nextTick</code> 实现。由于 promise 实现被认为是“platform code”, 它自己有可能会包含一个任务调度队列或者 “trampoline” , 在这个队列里面调用处理程序。</p>
+<p> 3.2.   就是说， 在严格模式下 <code>this</code> 在里面会指向 undefined , 在宽松模式下， 它将指向全局对象。</p>
+<p> 3.3.   如果实现满足了所有要求， 实现会允许出现 <code>promise2===promise1</code> 的情况。 每个实现应该表明是否会产生<code>promise2 === promise1</code>的现象， 以及在什么情况下会出现该情况。</p>
+<p> 3.4.   通常来说， 只有当 <code>x</code> 来自当前的实现时才能知道 <code>x</code> 是一个真的 promise 。此条款允许特定实现方式的使用可以采用已知符合的 promise 状态。(译者： 使用 x 的状态来代替外层 promise 的状态)</p>
+<p> 3.5.   程序首先存储对 <code>x.then</code> 的应用， 然后测试该引用， 然后调用该引用， 防止多次访问 <code>x.then</code> 属性。 此类预防措施对于确保访问者属性的一致性非常重要，因为访问者属性的值在两次检索之间可能会发生变化。</p>
+<p> 3.6.   实现中不应该对 thenable 链的深度设置任意限制， 认为当超过该限制时递归就是无限的。 只有真正的循环才会导致 TypeError 。如果遇到多个不同的 thenables 组成的链， 递归永远是正确的行为。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>需要重点注意的是 <a href="promise,x">[Resolve]</a> 对于 x 不同类型执行不同流程。</p>
+</blockquote>
+<ul>
+<li>Promises/A+ 规范的核心在于提供 then 方法。</li>
+<li>promise 是一个带有符合规范的<code>then</code>方法的对象或者函数。</li>
+<li>promise 有三个状态: <code>pending</code>, <code>fulfilled</code>,<code>rejected</code> ， 状态一旦改变就无法更改。</li>
+<li>promise.then(onFulfilled,onRejected) 中 onFulfilled，onRejected 如果不是函数会被忽略。</li>
+<li>then 方法返回一个 promise。</li>
+<li>promise2 = promise1.then(onFulfilled, onRejected) 中根据 onFulfilled，onRejected 返回的 value ， reason 更改 promise2 的状态并使用对应的 value， reason 作为返回值。</li>
+<li><a href="promise,x">[Resolve]</a> <ul>
+<li>如果 x 是一个 promise ， 使用 x 的状态代替 promise 的状态；</li>
+<li>如果 x 不是一个对象或者函数， 使用 x 将 promise 置为 fullfiled 状态。</li>
+<li>如果 x 是一个对象或者函数， <ul>
+<li>如果 x.then 不是函数， 使用 x 将 promise 置为 fulfilled 状态。</li>
+<li>尝试查找 x.then， 如果查找报错使用该错误 rejected， </li>
+<li>如果 x.then 是一个函数，会使用 x 作为 this 调用 x.then ，<ul>
+<li>x.then(resolvePromise, rejectPromise), x.then 接受所示两个参数， 如果调用 resolvePromise(y) 则执行 <a href="promise,y">[Resolve]</a> ；如果调用 rejectPromise(r), 使用 reason r 将 promise 状态置为 rejected 。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/11/promise-a-gui-fan-fan-yi/" data-id="ck92ufa2k001tzcoucqgd6ftz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -123,15 +877,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -144,7 +912,23 @@
       <ul>
         
           <li>
-            <a href="/blog/2020/04/16/hello-world/">Hello World</a>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
           </li>
         
       </ul>

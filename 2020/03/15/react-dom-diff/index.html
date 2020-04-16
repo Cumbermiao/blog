@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>React DOM Diff | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考文章：  官方： reconciliation Deep In React 之详谈 React 16 Diff 策略(二) 深入React fiber架构及源码 Inside Fiber: in-depth overview of the new reconciliation algorithm in React 首先开头需要明确 dom diff 的目的： 复用节点， 减少 dom 方面的开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React DOM Diff">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2020/03/15/react-dom-diff/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考文章：  官方： reconciliation Deep In React 之详谈 React 16 Diff 策略(二) 深入React fiber架构及源码 Inside Fiber: in-depth overview of the new reconciliation algorithm in React 首先开头需要明确 dom diff 的目的： 复用节点， 减少 dom 方面的开">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T18:49:32.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="diff">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://cumbermiao.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-react-dom-diff" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/15/react-dom-diff/" class="article-date">
+  <time datetime="2020-03-15T18:49:32.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React DOM Diff
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考文章：</p>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm" target="_blank" rel="noopener">官方： reconciliation</a></li>
+<li><a href="https://juejin.im/post/5d3e3231e51d4510926a7c39#comment" target="_blank" rel="noopener">Deep In React 之详谈 React 16 Diff 策略(二)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/57346388" target="_blank" rel="noopener">深入React fiber架构及源码</a></li>
+<li><a href="https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e" target="_blank" rel="noopener">Inside Fiber: in-depth overview of the new reconciliation algorithm in React</a><blockquote>
+<p>首先开头需要明确 dom diff 的目的： 复用节点， 减少 dom 方面的开销。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Diff-前提策略"><a href="#Diff-前提策略" class="headerlink" title="Diff 前提策略"></a>Diff 前提策略</h2><ol>
+<li>Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。</li>
+<li>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。</li>
+<li>对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。</li>
+</ol>
+<h2 id="Diff-过程"><a href="#Diff-过程" class="headerlink" title="Diff 过程"></a>Diff 过程</h2><blockquote>
+<p>React 将渲染分为两个阶段， render 和 commit 。 在 render 阶段中会构建 workInProgress tree ， 并且会得到一个 effect list， 这个 effect list 就是在 commit 阶段需要处理的节点。</p>
+</blockquote>
+<h3 id="side-effects"><a href="#side-effects" class="headerlink" title="side effects"></a>side effects</h3><blockquote>
+<p>You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” (or “effects” for short) because they can affect other components and can’t be done during rendering.<br>在 react 文档中将请求、订阅、操作 DOM 的这些操作叫做 “side effects” , 或者简单称为 “effects” 。<br>大部分 state 和 props 更新的操作都会导致 effects ，  React 在 fiber 节点中使用 effectTag 字段来记录对应的 effects 操作。</p>
+</blockquote>
+<h3 id="effectTag"><a href="#effectTag" class="headerlink" title="effectTag"></a>effectTag</h3><blockquote>
+<p>对应上面的的 side effects ， 每个 effect 操作类型在 react 都有对应的变量表示。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Don't change these two values. They're used by React Dev Tools.</span></span><br><span class="line"><span class="keyword">var</span> NoEffect = <span class="comment">/*              */</span><span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> PerformedWork = <span class="comment">/*         */</span><span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can change the rest (and add more).</span></span><br><span class="line"><span class="keyword">var</span> Placement = <span class="comment">/*             */</span><span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> Update = <span class="comment">/*                */</span><span class="number">4</span>;</span><br><span class="line"><span class="keyword">var</span> PlacementAndUpdate = <span class="comment">/*    */</span><span class="number">6</span>;</span><br><span class="line"><span class="keyword">var</span> Deletion = <span class="comment">/*              */</span><span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> ContentReset = <span class="comment">/*          */</span><span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> Callback = <span class="comment">/*              */</span><span class="number">32</span>;</span><br><span class="line"><span class="keyword">var</span> DidCapture = <span class="comment">/*            */</span><span class="number">64</span>;</span><br><span class="line"><span class="keyword">var</span> Ref = <span class="comment">/*                   */</span><span class="number">128</span>;</span><br><span class="line"><span class="keyword">var</span> Snapshot = <span class="comment">/*              */</span><span class="number">256</span>;</span><br><span class="line"><span class="keyword">var</span> Passive = <span class="comment">/*               */</span><span class="number">512</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Passive &amp; Update &amp; Callback &amp; Ref &amp; Snapshot</span></span><br><span class="line"><span class="keyword">var</span> LifecycleEffectMask = <span class="comment">/*   */</span><span class="number">932</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Union of all host effects</span></span><br><span class="line"><span class="keyword">var</span> HostEffectMask = <span class="comment">/*        */</span><span class="number">1023</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Incomplete = <span class="comment">/*            */</span><span class="number">1024</span>;</span><br><span class="line"><span class="keyword">var</span> ShouldCapture = <span class="comment">/*         */</span><span class="number">2048</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NoEffect:：effectTag 初始值， 表示 NoWork。</li>
+<li>PerformedWork：react devtools 使用。</li>
+<li>Placement：插入新的子节点。</li>
+<li>Update：当 props、state发生改变会标记为 update，在执行 commitUpdate 函数时进行属性更新。会调用对应的生命周期函数。</li>
+<li>Deletion：标记将要删除的节点。</li>
+<li>ContentReset：当从文本域节点切换到非文本域或空节点时，打上此标记，将文本内容进行重置，文本域节点包括textarea、option、noscript、string、number和直接在标签中写入的__html。当检测到标记后，执行commitResetTextContent函数将对应节点到text清空。</li>
+<li>Callback：当setState、forceUpdate有callback函数，或者在Commit阶段捕获到错误时，会更新update.callback，并标记Callback，随后检测到标记后会触发commitLifeCycles函数，根据不同到组件类型进行不同的commit。</li>
+<li>DidCapture：针对于懒加载的React.Suspense（SuspenseComponent）组件提供的标志位，DidCapture位置位表示要渲染的组件被挂起，进而先渲染fallback的内容。</li>
+<li>ShouldCapture：标记是否需要将节点挂起，一般捕获边界错误或者超时会置位，随后用于判断是否进行DidCapture。</li>
+<li>Ref：当节点中存在属性ref时，会进行markRef当标记，随后会在commitAllLifeCycles阶段执行commitAttachRef触发相应当ref回调函数。</li>
+<li>Snapshot：在渲染更新之前，当前后当props或state发生变化时，触 getSnapshotBeforeUpdate生命周期钩子。</li>
+</ul>
+<h3 id="effects-list"><a href="#effects-list" class="headerlink" title="effects list"></a>effects list</h3><blockquote>
+<p>effects list 是一个链表式的结构， 将所有需要更新的子 fiber 节点连接起来。<br>在遍历 fiber tree 时采用的时 DFS 遍历算法， 所以正常来说 effects list 中的节点应该也是按照自下而上的方式连接的。<br>在 fiber 节点中对应的有这么几个字段来维护自己的 effects list ： firstEffect、lastEffect、nextEffect。</p>
+</blockquote>
+<h3 id="详细过程解析"><a href="#详细过程解析" class="headerlink" title="详细过程解析"></a>详细过程解析</h3><h4 id="reconcileChildren"><a href="#reconcileChildren" class="headerlink" title="reconcileChildren"></a>reconcileChildren</h4><blockquote>
+<p>react diff 从 reconcileChildren 函数开始， 首次渲染调用时, current 为 null ， 此处我们只关心 reconcileChildFibers 函数。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">reconcileChildren</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  current: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">  workInProgress: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">  nextChildren: any,</span></span></span><br><span class="line"><span class="function"><span class="params">  renderExpirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (current === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// If this is a fresh new component that hasn't been rendered yet, we</span></span><br><span class="line">    <span class="comment">// won't update its child set by applying minimal side-effects. Instead,</span></span><br><span class="line">    <span class="comment">// we will add them all to the child before it gets rendered. That means</span></span><br><span class="line">    <span class="comment">// we can optimize this reconciliation pass by not tracking side-effects.</span></span><br><span class="line">    workInProgress.child = mountChildFibers(</span><br><span class="line">      workInProgress,</span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      nextChildren,</span><br><span class="line">      renderExpirationTime,</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// If the current child is the same as the work in progress, it means that</span></span><br><span class="line">    <span class="comment">// we haven't yet started any work on these children. Therefore, we use</span></span><br><span class="line">    <span class="comment">// the clone algorithm to create a copy of all the current children.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we had any progressed work already, that is invalid at this point so</span></span><br><span class="line">    <span class="comment">// let's throw it out.</span></span><br><span class="line">    workInProgress.child = reconcileChildFibers(</span><br><span class="line">      workInProgress,</span><br><span class="line">      current.child,</span><br><span class="line">      nextChildren,</span><br><span class="line">      renderExpirationTime,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="reconcileChildFibers"><a href="#reconcileChildFibers" class="headerlink" title="reconcileChildFibers"></a>reconcileChildFibers</h4><blockquote>
+<p>该函数接受四个参数，返回结果是 Fiber 或者 null。</p>
+</blockquote>
+<ul>
+<li>returnFiber<Fiber>： diff 开始的容器节点。</li>
+<li>currentFirstChild&lt;Fiber | null&gt;：容器节点的第一个子节点。</li>
+<li>newChild<any>：即将更新的 vdom 节点，可能是 TextNode、ReactElement、数组， 不是 fiber 节点。</li>
+<li>expirationTime<ExpirationTime>：调度任务需要使用的参数。</li>
+</ul>
+<h4 id="1-Diff-Single-TextNode"><a href="#1-Diff-Single-TextNode" class="headerlink" title="1. Diff Single TextNode"></a>1. Diff Single TextNode</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;aaa&gt;&lt;<span class="regexp">/aaa&gt;</span></span><br><span class="line"><span class="regexp">            &lt;bbb&gt;&lt;/</span>bbb&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            文字节点</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如上代码所示， 从 1 状态转变到 2 状态，对于 1 中来说 aaa bbb 可以为任何类型， 2中变成的 TextNode 节点。 此时 Diff 该如何操作呢？<br>react 会判断 currentFirstChild 的 tag 是否为 TextNode 类型， 如果 aaa 是 TextNode 类型， 那么会复用该节点， 并且将后面所有的兄弟节点 bbb 打上 delete 标签。<br>如果 aaa 不是 TextNode 类型， 那么 react 会删除所有的子节点即 aaa bbb 都会被删除， 然后重新创建一个 TextNode 节点。<br>对应源码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reconcileSingleTextNode</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    returnFiber: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">    currentFirstChild: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">    textContent: string,</span></span></span><br><span class="line"><span class="function"><span class="params">    expirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>): <span class="title">Fiber</span> </span>&#123;</span><br><span class="line">    <span class="comment">// There's no need to check for keys on text nodes since we don't have a</span></span><br><span class="line">    <span class="comment">// way to define them.</span></span><br><span class="line">    <span class="keyword">if</span> (currentFirstChild !== <span class="literal">null</span> &amp;&amp; currentFirstChild.tag === HostText) &#123;</span><br><span class="line">      <span class="comment">// We already have an existing node so let's just update it and delete</span></span><br><span class="line">      <span class="comment">// the rest.</span></span><br><span class="line">      deleteRemainingChildren(returnFiber, currentFirstChild.sibling);</span><br><span class="line">      <span class="keyword">const</span> existing = useFiber(currentFirstChild, textContent, expirationTime);</span><br><span class="line">      existing.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> existing;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// The existing first child is not a text node so we need to create one</span></span><br><span class="line">    <span class="comment">// and delete the existing ones.</span></span><br><span class="line">    deleteRemainingChildren(returnFiber, currentFirstChild);</span><br><span class="line">    <span class="keyword">const</span> created = createFiberFromText(</span><br><span class="line">      textContent,</span><br><span class="line">      returnFiber.mode,</span><br><span class="line">      expirationTime,</span><br><span class="line">    );</span><br><span class="line">    created.return = returnFiber;</span><br><span class="line">    <span class="keyword">return</span> created;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Diff-Single-React-Element"><a href="#2-Diff-Single-React-Element" class="headerlink" title="2. Diff Single React Element"></a>2. Diff Single React Element</h4><p>与 TextNode 类似， react 首先会判断容器节点的子节点中是否存在 key 与 newChild 相同的节点， 如果有并且 tag 也一样就复用该节点， 并删掉剩余节点。如果 key 一样， 但是 tag 不一样， 那么删掉所有节点， 无法复用。<br>如果子节点的 key 不一样， 则删掉当前的子节点， 并继续遍历下个 sibling 节点。<br>此时可能还会出现一个情况， 就是 newChild 和 child 节点都没有 key ， key 都为 null 。 那么此时会走到 tag 判断的地方， 如果两者的 tag 一样， 那么仍然会重用该节点。注释中也说明该情况只有 list 里面的第一个元素会走该流程， 因为如果第一个元素的 tag 不匹配的话， 会删除所有的 sibling 节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reconcileSingleElement</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    returnFiber: Fiber,</span></span></span><br><span class="line"><span class="function"><span class="params">    currentFirstChild: Fiber | null,</span></span></span><br><span class="line"><span class="function"><span class="params">    element: ReactElement,</span></span></span><br><span class="line"><span class="function"><span class="params">    expirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>): <span class="title">Fiber</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> key = element.key;</span><br><span class="line">    <span class="keyword">let</span> child = currentFirstChild;</span><br><span class="line">    <span class="keyword">while</span> (child !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">// <span class="doctag">TODO:</span> If key === null and child.key === null, then this only applies to</span></span><br><span class="line">      <span class="comment">// the first item in the list.</span></span><br><span class="line">      <span class="keyword">if</span> (child.key === key) &#123;</span><br><span class="line">        <span class="keyword">if</span> (</span><br><span class="line">          child.tag === Fragment</span><br><span class="line">            ? element.type === REACT_FRAGMENT_TYPE</span><br><span class="line">            : child.elementType === element.type ||</span><br><span class="line">              <span class="comment">// Keep this check inline so it only runs on the false path:</span></span><br><span class="line">              (__DEV__</span><br><span class="line">                ? isCompatibleFamilyForHotReloading(child, element)</span><br><span class="line">                : <span class="literal">false</span>)</span><br><span class="line">        ) &#123;</span><br><span class="line">          deleteRemainingChildren(returnFiber, child.sibling);</span><br><span class="line">          <span class="keyword">const</span> existing = useFiber(</span><br><span class="line">            child,</span><br><span class="line">            element.type === REACT_FRAGMENT_TYPE</span><br><span class="line">              ? element.props.children</span><br><span class="line">              : element.props,</span><br><span class="line">            expirationTime,</span><br><span class="line">          );</span><br><span class="line">          existing.ref = coerceRef(returnFiber, child, element);</span><br><span class="line">          existing.return = returnFiber;</span><br><span class="line">          <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">            existing._debugSource = element._source;</span><br><span class="line">            existing._debugOwner = element._owner;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> existing;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          deleteRemainingChildren(returnFiber, child);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        deleteChild(returnFiber, child);</span><br><span class="line">      &#125;</span><br><span class="line">      child = child.sibling;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (element.type === REACT_FRAGMENT_TYPE) &#123;</span><br><span class="line">      <span class="keyword">const</span> created = createFiberFromFragment(</span><br><span class="line">        element.props.children,</span><br><span class="line">        returnFiber.mode,</span><br><span class="line">        expirationTime,</span><br><span class="line">        element.key,</span><br><span class="line">      );</span><br><span class="line">      created.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> created;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> created = createFiberFromElement(</span><br><span class="line">        element,</span><br><span class="line">        returnFiber.mode,</span><br><span class="line">        expirationTime,</span><br><span class="line">      );</span><br><span class="line">      created.ref = coerceRef(returnFiber, currentFirstChild, element);</span><br><span class="line">      created.return = returnFiber;</span><br><span class="line">      <span class="keyword">return</span> created;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Diff-Array"><a href="#3-Diff-Array" class="headerlink" title="3. Diff Array"></a>3. Diff Array</h4><p>  对于 newChild 是数组类型来说， 情况相对比较复杂， 源码也比较长， 此处就不放了。下面分成几个情况来解析。</p>
+<h5 id="updateSlot"><a href="#updateSlot" class="headerlink" title="updateSlot"></a>updateSlot</h5><p>updateSlot 接受四个参数， 其中 oldFiber 是 reconcileChildrenArray 传入的 sibling 节点， newChild 是当前遍历的 newChildren 的元素。<br>函数中首先会判断 newChild 是不是 TextNode 节点， 然后判断 oldFiber 中是否存在 key ， 如果存在 key 那么 return null ，否则进入 updateTextNode 函数。 因为 TextNode 节点不会存在 key。<br>如果 newChild 是 react element 则会判断 key 是否一致， 一致的时候则进入 update， 只不过此处需要判断 newChild.type 是不是 fragment ， 如果是 fragment 的话 update 传递的是 newChild.props.children。<br>update 里面会判断是否能重用， 判断的条件与前面解释的过程一样，不能重用的话就会床架你新的节点。<br>对于 updateSlot 来说只要是无法重用的情况下都会 return null。</p>
+<h5 id="reconcileChildrenArray"><a href="#reconcileChildrenArray" class="headerlink" title="reconcileChildrenArray"></a>reconcileChildrenArray</h5><blockquote>
+<p> Diff Array 都会进入 reconcileChildrenArray 函数， 在该函数中， react 会取出容器节点的第一个节点和 newChild 的第一个元素。 之后会遍历 newChildren 并且每次都会进入 updateSlot 函数中。<br>如果 updateSlot 返回 null 的话说明当前的 oldFiber 无法重用， newChildren 的遍历会被终止。此时的场景就是可能 sibling 的顺序被移动了， 例如第一个 sibling 被移到了最后一个。 此时 react 使用所有的从当前 sibling 节点时候后面所有节点会生成一个 existingChildren 的 map ， key 为节点的key ， value 则为节点本身。之后会继续之前中断的 newChildren 遍历， 从 existingChildren 查找是否有重用的节点， 具体逻辑在 updateFromMap 中， 基本上就是有没有可复用的节点， 没有就重新创建，否则重用。</p>
+</blockquote>
+<p>总和以上分析， 对于 Diff Array 的情况可以分为以下几种：</p>
+<ol>
+<li>新增节点， 前面相同的节点全部复用， 新增的节点全部新创建。</li>
+<li>节点顺序不变， 只修改节点属性，全部节点复用。</li>
+<li>节点顺序改变， 所有节点复用。 具体逻辑： 前面顺序未变的在第一次遍历时可以全部复用， 在发现 oldFiber 和 newChild key 不一致的情况时， 会生成一个 map ， 在 map 找有没有可以复用的节点，没有则新增。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2020/03/15/react-dom-diff/" data-id="ck92ufa2m001vzcoua6bzfaq6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/03/16/react-hooks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React Hooks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/03/11/promise-a-gui-fan-fan-yi/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Promise A+ 规范翻译及个人总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

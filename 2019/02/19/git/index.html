@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>git 基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文参照文章 git 初始准备Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置： &#x2F;etc&#x2F;gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 –system 选项的 git config 时，它会从此文件读写配置变量. ~&#x2F;.gitconfig 或 ~&#x2F;.config&#x2F;git&#x2F;config">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 基础">
+<meta property="og:url" content="http://cumbermiao.github.io/blog/2019/02/19/git/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文参照文章 git 初始准备Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置： &#x2F;etc&#x2F;gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 –system 选项的 git config 时，它会从此文件读写配置变量. ~&#x2F;.gitconfig 或 ~&#x2F;.config&#x2F;git&#x2F;config">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://git-scm.com/book/en/v2/images/lifecycle.png">
+<meta property="article:published_time" content="2019-02-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:12:22.521Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://git-scm.com/book/en/v2/images/lifecycle.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://cumbermiao.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/02/19/git/" class="article-date">
+  <time datetime="2019-02-19T00:00:00.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git 基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文参照<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%8E%B7%E5%8F%96-Git-%E4%BB%93%E5%BA%93" title="" target="">文章</a></p>
+<h3 id="git-初始准备"><a href="#git-初始准备" class="headerlink" title="git 初始准备"></a>git 初始准备</h3><h5 id="Git-自带一个-git-config-的工具来帮助设置控制-Git-外观和行为的配置变量。-这些变量存储在三个不同的位置："><a href="#Git-自带一个-git-config-的工具来帮助设置控制-Git-外观和行为的配置变量。-这些变量存储在三个不同的位置：" class="headerlink" title="Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置："></a>Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置：</h5><ul>
+<li>/etc/gitconfig 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 –system 选项的 git config 时，它会从此文件读写配置变量.</li>
+<li>~/.gitconfig 或 ~/.config/git/config 文件：只针对当前用户。 可以传递 –global 选项让 Git 读写此文件。</li>
+<li>当前使用仓库的 Git 目录中的 config 文件（就是 .git/config）：针对该仓库。</li>
+</ul>
+<h5 id="初次使用-git-时，-需要设置下面几个信息。"><a href="#初次使用-git-时，-需要设置下面几个信息。" class="headerlink" title="初次使用 git 时， 需要设置下面几个信息。"></a>初次使用 git 时， 需要设置下面几个信息。</h5><ol>
+<li>设置用户信息</li>
+</ol>
+<p>第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"John Doe"</span></span><br><span class="line">git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p>如果使用了 –global 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 –global 选项的命令来配置。</p>
+<ol start="2">
+<li>检查配置信息</li>
+</ol>
+<p>使用 git config –list 查看所有配置 ， 你可能会看到重复的变量名，因为 Git 会从不同的文件中读取同一个配置（例如：/etc/gitconfig 与 ~/.gitconfig）。 这种情况下，Git 会使用它找到的每一个变量的最后一个配置。</p>
+<p>使用 git config <key> 查看指定 key 的值。</p>
+<ol start="3">
+<li>设置编辑器（可选）</li>
+</ol>
+<h3 id="获取仓库"><a href="#获取仓库" class="headerlink" title="获取仓库"></a>获取仓库</h3><blockquote>
+<p>有两种取得 Git 项目仓库的方法。 第一种是在本地创建 Git 仓库或者将现有目录下导入所有文件到 Git 中； 第二种是从一个服务器克隆一个现有的 Git 仓库。</p>
+</blockquote>
+<h4 id="本地创建仓库"><a href="#本地创建仓库" class="headerlink" title="本地创建仓库"></a>本地创建仓库</h4><p>在本地创建仓库，首先进入项目文件夹， 使用 git init 初始化，初始化会创建 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件。  </p>
+<p>如果你文件夹中已经有文件了， 需要使用 git add 命令来实现对指定文件的跟踪，然后执行 git commit 提交。</p>
+<h4 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h4><p>克隆远程仓库使用 git clone [url] 命令， 注意 git clone 默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</p>
+<p>Git 支持多种数据传输协议。 上面的例子使用的是 https:// 协议，不过你也可以使用 git:// 协议或者使用 SSH 传输协议，比如 user@server:path/to/repo.git </p>
+<h3 id="记录每次更新"><a href="#记录每次更新" class="headerlink" title="记录每次更新"></a>记录每次更新</h3><p>仓库中的文件只有两种状态 已追踪 和 未追踪。工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。</p>
+<img src="https://git-scm.com/book/en/v2/images/lifecycle.png" class="[class names]" title="[文件变化图]">
+
+<h4 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h4><p> git status 会显示当前仓库中 未被追踪的文件（空文件夹不会显示）， 已追踪的文件(add 但是未 commit,暂存状态)。</p>
+<p> 只要在 Changes to be committed 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件此时此刻的版本将被留存在历史记录中。 你可能会想起之前我们使用 git init 后就运行了 git add (files) 命令，开始跟踪当前目录下的文件。 </p>
+<p> git add 命令使用文件或目录的路径作为参数；如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。</p>
+<p> Changes not staged for commit ，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 git add 命令。</p>
+<p> git status -s/–short 输出标记：</p>
+<ul>
+<li>?? : 新添加的未跟踪文件</li>
+<li>A : 新添加到暂存区中的文件</li>
+<li>M : 修改过的文件</li>
+<li>MM : 左边的 M 表示文件已修改，右边的 M 表示未暂存</li>
+<li>AM : 类似 MM ， 左边表示新增未跟踪文件， M 表示修改但是未暂存。即 add 之后 有修改但是未再次 add。</li>
+</ul>
+<h4 id="查看已暂存和未暂存的修改"><a href="#查看已暂存和未暂存的修改" class="headerlink" title="查看已暂存和未暂存的修改"></a>查看已暂存和未暂存的修改</h4><p> git diff 查看当前未暂存的（未add）的文件内容的修改（与）<br> git diff –staged/–cached 查看已经暂存（add）的文件内容的修改</p>
+<h4 id="提交暂存内容"><a href="#提交暂存内容" class="headerlink" title="提交暂存内容"></a>提交暂存内容</h4><p> git commit 会进入编辑器书写本次提交说明。<br> git commit -m ‘’ 直接在命令行中书写说明，跳过进入编辑器操作。<br> git commit -a 自动暂存所有已跟踪的文件进行提交。</p>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p> 如果要删除 git 中某个文件，使用 git rm 暂存区的文件， 改命令还会删除 本地的文件。<br> 如果要保留本地文件，但是要删除 git 中的该文件使用 git rm –cached , 之后使用 git status 你可以看见本地文件处于未跟踪状态而仓库中该文件已经删除。</p>
+<h4 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h4><p> 使用 git mv from_file to_file 可以对文件重命名 ， 其实这条命令相当于 mv + git rm + git add 三条命令的合集。</p>
+<h4 id="查看历史提交"><a href="#查看历史提交" class="headerlink" title="查看历史提交"></a>查看历史提交</h4><p>git log 会按提交时间列出所有的更新</p>
+<figure class="highlight plain"><figcaption><span>log -p -n```  -p 显示每次提交的内容差异， -n 表示比较最近 n 次提交</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;git log --pretty&#x3D;format&#96;&#96;&#96;相关格式参照上面的文章</span><br><span class="line"></span><br><span class="line">### 撤销操作</span><br><span class="line"></span><br><span class="line">#### 撤销提交</span><br><span class="line">&#96;&#96;&#96;git commit --amend&#96;&#96;&#96; 重新对上一次提交进行提交， 如果上一次提交后没有修改则直接修改 commit 信息，如果上一次后有修改的内容需要先暂存，改命令会提交暂存内容并修改commit 信息。</span><br><span class="line"></span><br><span class="line">如果你 add * 暂存了错误的文件并且已经 commit 了， 可以使用 &#96;&#96;&#96;git rm&#96;&#96;&#96; + &#96;&#96;&#96;git commit --amend&#96;&#96;&#96; 来删除 git 中的错误文件，因为 rm 删除了暂存区的文件，amend 重新提交会提交暂存区的内容，所以就会覆盖上次 commit。</span><br><span class="line"></span><br><span class="line">#### 撤销暂存文件</span><br><span class="line">&#96;&#96;&#96;git reset HEAD filename &#96;&#96;&#96; 撤销暂存区中的文件</span><br><span class="line"></span><br><span class="line">#### 撤销文件修改</span><br><span class="line">&#96;&#96;&#96;git checkout -- filename&#96;&#96;&#96; 撤销文件改动，注意使用该命令无法恢复之前文件的改动</span><br><span class="line"></span><br><span class="line">### 远程仓库</span><br><span class="line"></span><br><span class="line">#### 添加远程仓库</span><br><span class="line">&#96;&#96;&#96;git remote add &lt;remote-name&gt; &lt;url&gt;&#96;&#96;&#96; 新增远程仓库，remote-name 缩写别名</span><br><span class="line">仓库可能会有多个，一般第一次新增的为origin。添加了远程仓库可以拉取数据。</span><br><span class="line"></span><br><span class="line">#### 拉取数据</span><br><span class="line">&#96;&#96;&#96;git fetch [remote-name]&#96;&#96;&#96; 这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</span><br><span class="line"></span><br><span class="line">#### 推送到远程仓库</span><br><span class="line">&#96;&#96;&#96;git push [remote-name] [branch-name]&#96;&#96;&#96;  只有当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。</span><br><span class="line"></span><br><span class="line">#### 查看远程仓库</span><br><span class="line">&#96;&#96;&#96;git remote show [remote-name]&#96;&#96;&#96; 查看远程仓库信息</span><br><span class="line"></span><br><span class="line">#### 远程仓库的移除与重命名</span><br><span class="line">&#96;&#96;&#96;git remote rename origin_name new_name&#96;&#96;&#96;  修改仓库的 remote_name</span><br><span class="line">&#96;&#96;&#96;git remote rm [remote-name]&#96;&#96;&#96; 删除远程仓库</span><br><span class="line"></span><br><span class="line">### 标签</span><br><span class="line"></span><br><span class="line">#### 创建标签</span><br><span class="line">Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。</span><br><span class="line">轻量标签很像一个不会改变的分支 - 它只是一个特定提交的引用。</span><br><span class="line">附注标签是存储在 Git 数据库中的一个完整对象。 它们是可以被校验的；其中包含打标签者的名字、电子邮件地址、日期时间；还有一个标签信息；并且可以使用 GNU Privacy Guard （GPG）签名与验证。 通常建议创建附注标签，这样你可以拥有以上所有信息。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;git tag tag-name&#96;&#96;&#96; 创建轻量标签</span><br><span class="line">&#96;&#96;&#96;git tag -a tag-name&#96;&#96;&#96; 创建轻量标签</span><br><span class="line">&#96;&#96;&#96;git tag tag-name commit-id&#96;&#96;&#96; 可以给之前commit的记录打tag</span><br><span class="line"></span><br><span class="line">一般情况下， git push 命令并不会传送标签到远程仓库服务器上。在创建完标签后你必须显式地推送标签到共享服务器上。 这个过程就像共享远程分支一样 - 你可以运行 &#96;&#96;&#96;git push origin [tagname]&#96;&#96;&#96;。</span><br><span class="line"></span><br><span class="line">#### 删除标签</span><br><span class="line">&#96;&#96;&#96;git tag -d tag-name&#96;&#96;&#96; 删除标签</span><br><span class="line"></span><br><span class="line">一般情况下，我们不应该直接检出标签，&#96;&#96;&#96;git checkout tag-name&#96;&#96;&#96; 检出标签之后，如果进行了一些修改并且提交，标签不会发生变化，但你的新提交将不属于任何分支，并且将无法访问，除非确切的提交哈希。</span><br><span class="line">因此，如果你需要进行更改通常需要创建一个新分支&#96;&#96;&#96;git checkout tag-name -b &#96;&#96;&#96;.</span><br><span class="line"></span><br><span class="line">### 设置命令别名</span><br><span class="line">&#96;&#96;&#96;git config --global alias.co checkout&#96;&#96;&#96; 设置 checkout 别名为 co ， &#96;&#96;&#96;git co&#96;&#96;&#96; 效果与 &#96;&#96;&#96;git checkout&#96;&#96;&#96; 一样。</span><br><span class="line">对于一些常用的命令，我们可以进行简写，对于一些命令可以进行语义化的书写，如：</span><br><span class="line">- 取消暂存文件 &#96;&#96;&#96;git config --global alias.unstage &#39;reset HEAD --&#39;</span><br></pre></td></tr></table></figure>
+
+<p>如果要执行外部命令，而不是一个 Git 子命令。 如果是那样的话，可以在命令前面加入 ! 符号。  如果你自己要写一些与 Git 仓库协作的工具的话，那会很有用。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cumbermiao.github.io/blog/2019/02/19/git/" data-id="ck92ufa2i001rzcou3qnb5249" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/02/26/extension/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          chrome extension
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/01/25/about/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Sparse-Array/" rel="tag">Sparse Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/diff/" rel="tag">diff</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fiber/" rel="tag">fiber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hooks/" rel="tag">hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/string/" rel="tag">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Array/" style="font-size: 13.33px;">Array</a> <a href="/blog/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/blog/tags/diff/" style="font-size: 10px;">diff</a> <a href="/blog/tags/fiber/" style="font-size: 10px;">fiber</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hooks/" style="font-size: 10px;">hooks</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/sort/" style="font-size: 10px;">sort</a> <a href="/blog/tags/string/" style="font-size: 10px;">string</a> <a href="/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/blog/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/blog/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/16/vscode-config/">vscode-config</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/30/qian-duan-jian-kong/">前端监控</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/27/qian-duan-gong-cheng-hua/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/26/xing-neng-you-hua/">性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/03/24/http-and-https-and-tlsssl/">HTTP &amp; HTTPS &amp; TLS/SSL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

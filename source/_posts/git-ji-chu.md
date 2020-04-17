@@ -153,26 +153,6 @@ Git 使用两种主要类型的标签：轻量标签（lightweight）与附注�
 
 如果要执行外部命令，而不是一个 Git 子命令。 如果是那样的话，可以在命令前面加入 ! 符号。  如果你自己要写一些与 Git 仓库协作的工具的话，那会很有用。 
 
-## github 多账户管理
-==注意要取消全局的 username & email==
-```
-git config --global --unset user.name
-git config --global --unset user.email
-```
-1. 首先为每个账户生成不同的秘钥
-2. 配置 .ssh/config
-```bash
-# teamsprite
-Host teamsprite
-HostName github.com
-User teamsprite
-AddKeysToAgent yes
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/teamsprite_rsa
-```
-3. 开启`ssh-agent`，使用命令`ssh-add rsa私钥` 添加到 ssh-agent 中
-4. 下次设置 `remote` 的地址时替换 ssh 地址中 `git@github.com` 为`config` 文件中的`Host`，已设置的可以使用 `git remote set-url origin git@teamsprite:teamsprite/test.git` 修改远程地址， 格式为 `git@{host}:{github name}/{respositry}.git`
-
 ## git pull/push timeout
 ```
 ssh -T git@github.com
